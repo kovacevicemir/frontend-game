@@ -116,6 +116,10 @@ export class Player implements IPlayer {
     });
   }
 
+  deleteAllFromInventory(): void {
+    this.inventoryItems = [];
+  }
+
   equipItem(item: IItem): void {
     const itemSlot: string = itemSlotNamesArray[item.slot];
 

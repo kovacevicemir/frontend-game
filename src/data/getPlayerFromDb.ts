@@ -1,10 +1,10 @@
 import { Player } from "../models/Player";
 import { get, set } from "./localStorage";
-import { itemsList } from "./mockItemsList";
+import { itemsDictionary as items } from "./mockItemsList";
 
 export const getPlayerFromDb = () => {
   const playerObj = get("LichKing");
-  if (playerObj === typeof Player) {
+  if (typeof playerObj === typeof Player && playerObj !== null) {
     playerObj.computePlayerStats();
   }
 
@@ -16,16 +16,16 @@ export const getPlayerFromDb = () => {
       "LichKing",
       1,
       {
-        weapon: itemsList[0],
-        armor: itemsList[1],
-        boots: itemsList[2],
+        weapon: items[1],
+        armor: null,
+        boots: null,
         belt: null,
         ring: null,
         neck: null,
         shield: null,
         head: null,
       },
-      [itemsList[0], itemsList[1]],
+      [],
       0,
       0
     );

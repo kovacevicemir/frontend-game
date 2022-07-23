@@ -10,7 +10,6 @@ import Inventory from "./components/Inventory";
 import PlayerInfo from "./components/PlayerInfo";
 import { MainLayout } from "./components/MainLayout";
 import { clearAll } from "./data/localStorage";
-import { IPlayer } from "./interfaces/IPlayer";
 
 const App = () => {
   const [player, setPlayer] = useState<Player | null>(null);

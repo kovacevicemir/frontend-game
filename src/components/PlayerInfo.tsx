@@ -27,16 +27,20 @@ const PlayerInfo: React.FC<IPlayerInfo> = ({
   }
 
   const renderItem = ({ item, handleUnequip }: IRenderItem) => {
-    if (item)
+    if (item) {
       return (
-        <div>
+        <div
+          style={{
+            border: "1px solid black",
+            width: "30%",
+            borderRadius: "3px",
+          }}
+        >
           <strong>{itemSlotNamesArray[item.slot].toUpperCase()}</strong>
-          <br />[{item.name}]<br />
-          {item.attack ? `Attack: ${item.attack}` : null} <br />
-          {item.deffense ? `Deffense: ${item.deffense}` : null}
-          <br />
-          {item.healthPoints ? `Hp: ${item.healthPoints}` : null}
-          <br />
+          <div>[{item.name}]</div>
+          <div>{item.attack ? `Attack: ${item.attack}` : null}</div>
+          <div>{item.deffense ? `Deffense: ${item.deffense}` : null}</div>
+          <div>{item.healthPoints ? `Hp: ${item.healthPoints}` : null}</div>
           <button
             onClick={() => {
               handleUnequip(item);
@@ -46,22 +50,58 @@ const PlayerInfo: React.FC<IPlayerInfo> = ({
           </button>
         </div>
       );
+    } else {
+      return <div style={{ border: "1px solid black", width: "30%" }}></div>;
+    }
   };
 
   return (
-    <div style={{ border: "2px solid black" }}>
+    <div
+      style={{
+        border: "2px solid black",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        padding: "10px",
+        flexWrap: "wrap",
+        gap: "10px",
+        minWidth: "300px",
+      }}
+    >
+      {renderItem({
+        item: null,
+        handleUnequip: handleUnequip,
+      })}
+      {renderItem({
+        item: player.equipedItems.head,
+        handleUnequip: handleUnequip,
+      })}
+      {renderItem({
+        item: player.equipedItems.neck,
+        handleUnequip: handleUnequip,
+      })}
       {renderItem({
         item: player.equipedItems.weapon,
         handleUnequip: handleUnequip,
       })}
-      <hr />
       {renderItem({
         item: player.equipedItems.armor,
         handleUnequip: handleUnequip,
       })}
-      <hr />
+      {renderItem({
+        item: player.equipedItems.shield,
+        handleUnequip: handleUnequip,
+      })}
+      {renderItem({
+        item: player.equipedItems.belt,
+        handleUnequip: handleUnequip,
+      })}
       {renderItem({
         item: player.equipedItems.boots,
+        handleUnequip: handleUnequip,
+      })}
+      {renderItem({
+        item: player.equipedItems.ring,
         handleUnequip: handleUnequip,
       })}
     </div>

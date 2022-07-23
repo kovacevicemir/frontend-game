@@ -13,14 +13,27 @@ interface IMainInfoBar {
 
 const MainInfoBar: React.FC<IMainInfoBar> = (props: IMainInfoBar) => {
   return (
-    <div style={{ border: "2px solid black" }}>
-      {props.nickname} [{props.level}]
-      <br />
-      Attack: {props.totalAttack} <br />
-      Deffense: {props.totalDeffense} <br />
-      Hp: {props.totalHealthPoints} <br />
-      experience: {props.experience} / {props.experienceNeeded}
-      <br />${props.gold} <br />
+    <div
+      style={{
+        border: "2px solid black",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "20px",
+        fontSize: "20px",
+      }}
+    >
+      <div>
+        {props.nickname}[{props.level}]
+      </div>
+      <div>Attack: {props.totalAttack}</div>
+      <div>Deffense: {props.totalDeffense}</div>
+      <div>Hp: {props.totalHealthPoints}</div>
+      <div>
+        experience: {props.experience} / {props.experienceNeeded}
+      </div>
+      <div>${props.gold}</div>
     </div>
   );
 };

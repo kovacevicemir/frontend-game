@@ -1,30 +1,116 @@
 import { IItem, itemSlotEnum } from "../interfaces/IItem";
 
-export const itemsList: IItem[] = [
-  {
+export const itemsDictionary: Record<number, IItem> = {
+  1: {
     id: 1,
     name: "Short Sword",
     attack: 2,
     deffense: 0,
     healthPoints: 0,
     slot: itemSlotEnum.weapon,
-  }, //1
-
-  {
+  },
+  2: {
     id: 2,
+    name: "Clown Boots",
+    attack: 1,
+    deffense: 1,
+    healthPoints: 3,
+    slot: itemSlotEnum.boots,
+  },
+  3: {
+    id: 3,
     name: "White T-Shirt",
     attack: 0,
     deffense: 2,
     healthPoints: 5,
     slot: itemSlotEnum.armor,
-  }, //2
-
-  {
-    id: 3,
-    name: "Clown Boots",
-    attack: 2,
+  },
+  4: {
+    id: 4,
+    name: "Basic shield",
+    attack: 0,
     deffense: 1,
-    healthPoints: 3,
+    healthPoints: 1,
+    slot: itemSlotEnum.shield,
+  },
+  5: {
+    id: 5,
+    name: "Pimp hat",
+    attack: 1,
+    deffense: 1,
+    healthPoints: 5,
+    slot: itemSlotEnum.head,
+  },
+  6: {
+    id: 6,
+    name: "Golden chain",
+    attack: 2,
+    deffense: 2,
+    healthPoints: 2,
+    slot: itemSlotEnum.neck,
+  },
+  7: {
+    id: 7,
+    name: "Golden ring",
+    attack: 2,
+    deffense: 2,
+    healthPoints: 2,
+    slot: itemSlotEnum.ring,
+  },
+  8: {
+    id: 8,
+    name: "Golden belt",
+    attack: 2,
+    deffense: 2,
+    healthPoints: 2,
+    slot: itemSlotEnum.belt,
+  },
+  9: {
+    id: 9,
+    name: "Baseball bat",
+    attack: 5,
+    deffense: 0,
+    healthPoints: 0,
+    slot: itemSlotEnum.weapon,
+  },
+  10: {
+    id: 10,
+    name: "Kevlar",
+    attack: 2,
+    deffense: 3,
+    healthPoints: 10,
+    slot: itemSlotEnum.armor,
+  },
+  11: {
+    id: 11,
+    name: "Brass knuckles",
+    attack: 6,
+    deffense: 0,
+    healthPoints: 0,
+    slot: itemSlotEnum.weapon,
+  },
+  12: {
+    id: 12,
+    name: "Riot shield",
+    attack: 0,
+    deffense: 5,
+    healthPoints: 10,
+    slot: itemSlotEnum.shield,
+  },
+  13: {
+    id: 13,
+    name: "MaxAir",
+    attack: 5,
+    deffense: 1,
+    healthPoints: 7,
     slot: itemSlotEnum.boots,
-  }, //3
-];
+  },
+  14: {
+    id: 14,
+    name: "Bike Helmet",
+    attack: 2,
+    deffense: 3,
+    healthPoints: 6,
+    slot: itemSlotEnum.head,
+  },
+};
