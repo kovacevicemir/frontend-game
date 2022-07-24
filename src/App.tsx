@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import { Player } from "./models/Player";
 import { getPlayerFromDb } from "./data/getPlayerFromDb";
 import { updatePlayerDb } from "./data/updatePlayerDb";
@@ -8,8 +6,8 @@ import MainInfoBar from "./components/MainInfoBar";
 import World from "./components/World";
 import Inventory from "./components/Inventory";
 import PlayerInfo from "./components/PlayerInfo";
-import { MainLayout } from "./components/MainLayout";
 import { clearAll } from "./data/localStorage";
+import { MainLayout } from "./components/styled";
 
 const App = () => {
   const [player, setPlayer] = useState<Player | null>(null);
@@ -39,7 +37,7 @@ const App = () => {
   }
 
   return (
-    <MainLayout className="App">
+    <MainLayout>
       <MainInfoBar
         nickname={player.nickname}
         level={player.level}

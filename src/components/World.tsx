@@ -8,9 +8,8 @@ import DisplayBattle from "./DisplayBattle";
 import { generateMobsArray } from "../helpers/generateMobsArray";
 import RenderMobs from "./RenderMobs";
 import RenderDifficulties from "./RenderDifficulties";
-import world1 from "../images/world1.gif";
 import Button01 from "../images/Button01.png";
-import { GameButton } from "./styled";
+import { WorldMiddleLayout, GameButton, WorldMainStyle } from "./styled";
 
 interface IWorld {
   player: Player;
@@ -24,15 +23,14 @@ const World = ({ player, setPlayer }: IWorld) => {
   const [fightLogIndex, setFightLogIndex] = useState(0);
 
   const handleMobAttack = (mob: Monster) => {
+    //dont switch order!! bug prone
     const cp = copyPlayer(player);
+    cp.computePlayerStats();
+
     mob.attackMe(cp);
 
     const cm = _.cloneDeep(monsters);
     cm.pop();
-
-    if (mob.battleResults?.win) {
-      cp.computePlayerStats();
-    }
 
     setFightLogIndex(0);
     setPlayer(cp);
@@ -50,7 +48,7 @@ const World = ({ player, setPlayer }: IWorld) => {
     if (battleData) {
       let interval = setInterval(() => {
         setFightLogIndex((prev) => prev + 1);
-      }, 700);
+      }, 750);
 
       return () => {
         clearInterval(interval);
@@ -63,51 +61,24 @@ const World = ({ player, setPlayer }: IWorld) => {
   }, [difficulty]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        backgroundImage: `url(${world1})`,
-        backgroundSize: "100% 100%",
-        width: "100%",
-        height: "100%",
-        backgroundColor: "black",
-        color: "#fdfbf5",
-      }}
-    >
-      <div style={{ display: "flex", justifyContent: "center", gap: "5" }}>
-        {
-          <RenderDifficulties
-            difficulty={difficulty}
-            setDifficulty={setDifficulty}
-          />
-        }
-      </div>
+    <WorldMainStyle>
+      <RenderDifficulties
+        difficulty={difficulty}
+        setDifficulty={setDifficulty}
+      />
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "5",
-          justifyContent: "center",
-          marginTop: "2%",
-          minHeight: "200px",
-        }}
-      >
+      <WorldMiddleLayout>
         {!battleData?.playerAttacks[fightLogIndex] && (
           <RenderMobs monsters={monsters} handleMobAttack={handleMobAttack} />
         )}
         {battleData?.playerAttacks[fightLogIndex] !== undefined && (
           <DisplayBattle
+            battleData={battleData}
             nickname={player.nickname}
-            monsterAttacks={battleData.monsterAttacks}
-            playerAttacks={battleData.playerAttacks}
             fightLogIndex={fightLogIndex}
-            win={battleData.win}
           />
         )}
-      </div>
+      </WorldMiddleLayout>
 
       <div>
         <GameButton
@@ -119,7 +90,7 @@ const World = ({ player, setPlayer }: IWorld) => {
           Explore
         </GameButton>
       </div>
-    </div>
+    </WorldMainStyle>
   );
 };
 

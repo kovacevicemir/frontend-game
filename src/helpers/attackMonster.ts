@@ -1,3 +1,4 @@
+import { random } from "lodash";
 import { IBattleResults } from "../interfaces/IBattleResults";
 import { IItem } from "../interfaces/IItem";
 import { Monster } from "../models/Monster";
@@ -13,9 +14,11 @@ export const attackMonster = (
   let playerHP: number = player.totalHealthPoints;
   let monsterHP: number = monster.healthPoints;
 
+  player.computePlayerStats();
+
   const addPlayerAttack = (): number => {
     let playerDamage: number;
-    playerDamage = player.totalAttack - monster.deffense;
+    playerDamage = player.totalAttack + random(0, 5) - monster.deffense;
     if (playerDamage >= 0) {
       monsterHP -= playerDamage;
       return playerDamage;
@@ -25,7 +28,7 @@ export const attackMonster = (
 
   const addMonsterAttack = (): number => {
     let monsterDamage: number;
-    monsterDamage = monster.attack - player.totalDeffense;
+    monsterDamage = monster.attack + random(0, 5) - player.totalDeffense;
     if (monsterDamage >= 0) {
       playerHP -= monsterDamage;
       return monsterDamage;

@@ -1,6 +1,7 @@
 import React from "react";
 import { Monster } from "../models/Monster";
 import Aic18 from "../images/Aic18.jpg";
+import { MobAttackButton, MonsterContainer } from "./styled";
 
 interface IRenderMobs {
   monsters: Monster[];
@@ -19,33 +20,16 @@ const RenderMobs: React.FC<IRenderMobs> = ({ monsters, handleMobAttack }) => {
     >
       {monsters.map((mob: Monster) => {
         return (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 5,
-              fontSize: "18px",
-            }}
-          >
+          <MonsterContainer>
             <div>
               {mob.name} [{mob.level}]
             </div>
-            <button
-              style={{
-                height: "25px",
-                width: "25px",
-                borderRadius: "50%",
-                border: "none",
-                backgroundImage: `url(${Aic18})`,
-                backgroundSize: "100% 100%",
-              }}
+            <MobAttackButton
               onClick={() => {
                 handleMobAttack(mob);
               }}
-            ></button>
-          </div>
+            />
+          </MonsterContainer>
         );
       })}
     </div>

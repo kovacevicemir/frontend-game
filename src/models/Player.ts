@@ -7,6 +7,7 @@ import { IBattleResults } from "../interfaces/IBattleResults";
 import { IEquipedItems, itemSlotNamesArray } from "../interfaces/IEquipedItems";
 import { IItem } from "../interfaces/IItem";
 import { IPlayer } from "../interfaces/IPlayer";
+import _ from "lodash";
 
 export class Player implements IPlayer {
   id: number;
@@ -145,7 +146,7 @@ export class Player implements IPlayer {
   //Helper only because real db will take care of unique ID in the future
   insertUniqueId(item: IItem): IItem {
     let isUniqueId = true;
-    let checkList = [...this.inventoryItems];
+    let checkList = _.cloneDeep(this.inventoryItems);
 
     for (let equipedItem of Object.values(this.equipedItems)) {
       if (equipedItem === null) continue;
@@ -153,7 +154,11 @@ export class Player implements IPlayer {
     }
 
     checkList.forEach((existingItem) => {
-      if (existingItem.id === item.id) isUniqueId = false;
+      try {
+        if (existingItem.id === item.id) isUniqueId = false;
+      } catch (e) {
+        console.log(e, existingItem, item);
+      }
     });
 
     if (isUniqueId) {

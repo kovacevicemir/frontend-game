@@ -1,6 +1,7 @@
 import React from "react";
 import bag from "../images/bag.png";
 import Panel_1 from "../images/Panel_1.png";
+import { MainInfoBarStyle } from "./styled";
 
 interface IMainInfoBar {
   nickname: string;
@@ -15,20 +16,7 @@ interface IMainInfoBar {
 
 const MainInfoBar: React.FC<IMainInfoBar> = (props: IMainInfoBar) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "20px",
-        fontSize: "20px",
-        color: "#dfd5c3",
-        backgroundImage: `url(${Panel_1})`,
-        backgroundSize: "100% 100%",
-        backgroundColor: "black",
-      }}
-    >
+    <MainInfoBarStyle>
       <div>
         {props.nickname} [{props.level}]
       </div>
@@ -44,7 +32,7 @@ const MainInfoBar: React.FC<IMainInfoBar> = (props: IMainInfoBar) => {
         <img src={bag} alt="gold" width={45} />
         {props.gold}
       </div>
-    </div>
+    </MainInfoBarStyle>
   );
 };
 
