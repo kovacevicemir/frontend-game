@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { monstersDictionary } from "../data/mockMonsterList";
 import _ from "lodash";
 import { copyPlayer } from "../helpers/copyPlayer";
 import { Monster } from "../models/Monster";
@@ -7,6 +6,11 @@ import { Player } from "../models/Player";
 import { IBattleResults } from "../interfaces/IBattleResults";
 import DisplayBattle from "./DisplayBattle";
 import { generateMobsArray } from "../helpers/generateMobsArray";
+import RenderMobs from "./RenderMobs";
+import RenderDifficulties from "./RenderDifficulties";
+import world1 from "../images/world1.gif";
+import Button01 from "../images/Button01.png";
+import { GameButton } from "./styled";
 
 interface IWorld {
   player: Player;
@@ -42,56 +46,6 @@ const World = ({ player, setPlayer }: IWorld) => {
     setMonsters(generateMobsArray(difficulty));
   };
 
-  const renderDifficulties = () => {
-    return Object.entries(monstersDictionary).map(([key, value]) => {
-      const dif = parseInt(key);
-      return (
-        <button
-          style={{
-            height: "35px",
-            fontSize: "14px",
-            backgroundColor: `${difficulty === dif ? "white" : ""}`,
-          }}
-          onClick={() => setDifficulty(dif)}
-        >
-          Difficulty {dif}
-        </button>
-      );
-    });
-  };
-
-  const renderMobs = () => {
-    return monsters.map((mob) => {
-      return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 5,
-          }}
-        >
-          <div>
-            {mob.name} [{mob.level}]
-          </div>
-          <button
-            style={{
-              height: "20px",
-              backgroundColor: "red",
-              color: "whitesmoke",
-            }}
-            onClick={() => {
-              handleMobAttack(mob);
-            }}
-          >
-            X
-          </button>
-        </div>
-      );
-    });
-  };
-
   useEffect(() => {
     if (battleData) {
       let interval = setInterval(() => {
@@ -109,10 +63,26 @@ const World = ({ player, setPlayer }: IWorld) => {
   }, [difficulty]);
 
   return (
-    <div>
-      <h1>World</h1>
-      <div style={{ display: "flex", justifyContent: "center", gap: "5px" }}>
-        {renderDifficulties()}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        backgroundImage: `url(${world1})`,
+        backgroundSize: "100% 100%",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "black",
+        color: "#fdfbf5",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "center", gap: "5" }}>
+        {
+          <RenderDifficulties
+            difficulty={difficulty}
+            setDifficulty={setDifficulty}
+          />
+        }
       </div>
 
       <div
@@ -125,7 +95,9 @@ const World = ({ player, setPlayer }: IWorld) => {
           minHeight: "200px",
         }}
       >
-        {!battleData?.playerAttacks[fightLogIndex] && renderMobs()}
+        {!battleData?.playerAttacks[fightLogIndex] && (
+          <RenderMobs monsters={monsters} handleMobAttack={handleMobAttack} />
+        )}
         {battleData?.playerAttacks[fightLogIndex] !== undefined && (
           <DisplayBattle
             nickname={player.nickname}
@@ -138,9 +110,14 @@ const World = ({ player, setPlayer }: IWorld) => {
       </div>
 
       <div>
-        <button onClick={() => handleSearchMonsters()}>
-          search for monsters
-        </button>
+        <GameButton
+          // @ts-ignore
+          image={Button01}
+          onClick={() => handleSearchMonsters()}
+          letterSpacing={"2px"}
+        >
+          Explore
+        </GameButton>
       </div>
     </div>
   );

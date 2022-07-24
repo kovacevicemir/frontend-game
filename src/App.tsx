@@ -50,10 +50,11 @@ const App = () => {
         experienceNeeded={player.experienceNeeded}
         gold={player.gold}
       />
-      <div></div>
+      <div style={{ background: "black" }}></div>
       <World player={player} setPlayer={setPlayer} />
       <PlayerInfo player={player} setPlayer={setPlayer} />
       <Inventory player={player} setPlayer={setPlayer} />
+      <div style={{ background: "black" }}></div>
     </MainLayout>
   );
 };

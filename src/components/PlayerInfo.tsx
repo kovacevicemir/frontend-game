@@ -1,8 +1,12 @@
 import React from "react";
 import { copyPlayer } from "../helpers/copyPlayer";
-import { IEquipedItems, itemSlotNamesArray } from "../interfaces/IEquipedItems";
-import { IItem, itemSlotEnum } from "../interfaces/IItem";
+import { itemSlotNamesArray } from "../interfaces/IEquipedItems";
+import { IItem } from "../interfaces/IItem";
 import { Player } from "../models/Player";
+import MainPanel01 from "../images/MainPanel01.png";
+import Button04 from "../images/Button04.png";
+import Button01 from "../images/Button01.png";
+import { GameButton } from "./styled";
 
 interface IPlayerInfo {
   player: Player;
@@ -31,9 +35,12 @@ const PlayerInfo: React.FC<IPlayerInfo> = ({
       return (
         <div
           style={{
-            border: "1px solid black",
-            width: "30%",
-            borderRadius: "3px",
+            width: "28%",
+            minHeight: "140px",
+            backgroundImage: `url(${Button04})`,
+            backgroundSize: "100% 100%",
+            color: "#fff",
+            padding: "5px",
           }}
         >
           <strong>{itemSlotNamesArray[item.slot].toUpperCase()}</strong>
@@ -41,31 +48,36 @@ const PlayerInfo: React.FC<IPlayerInfo> = ({
           <div>{item.attack ? `Attack: ${item.attack}` : null}</div>
           <div>{item.deffense ? `Deffense: ${item.deffense}` : null}</div>
           <div>{item.healthPoints ? `Hp: ${item.healthPoints}` : null}</div>
-          <button
+
+          <GameButton
+            // @ts-ignore
+            image={Button01}
             onClick={() => {
               handleUnequip(item);
             }}
           >
-            Unequip
-          </button>
+            unequip
+          </GameButton>
         </div>
       );
     } else {
-      return <div style={{ border: "1px solid black", width: "30%" }}></div>;
+      return <div style={{ width: "30%" }}></div>;
     }
   };
 
   return (
     <div
       style={{
-        border: "2px solid black",
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        padding: "10px",
         flexWrap: "wrap",
         gap: "10px",
         minWidth: "300px",
+        backgroundImage: `url(${MainPanel01})`,
+        backgroundSize: "100% 100%",
+        backgroundColor: "black",
+        padding: "5%",
       }}
     >
       {renderItem({
