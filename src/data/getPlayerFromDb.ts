@@ -3,7 +3,7 @@ import { get, set } from "./localStorage";
 import { itemsDictionary as items } from "./mockItemsList";
 
 export const getPlayerFromDb = () => {
-  const playerObj = get("LichKing");
+  const playerObj = get("Player");
   if (typeof playerObj === typeof Player && playerObj !== null) {
     playerObj.computePlayerStats();
   }
@@ -13,7 +13,7 @@ export const getPlayerFromDb = () => {
   } else {
     const newPlayer = new Player(
       1,
-      "LichKing",
+      "Player",
       1,
       {
         weapon: items[1],
@@ -30,7 +30,7 @@ export const getPlayerFromDb = () => {
       0
     );
     newPlayer.computePlayerStats();
-    set("LichKing", newPlayer);
+    set("Player", newPlayer);
     return newPlayer;
   }
 };

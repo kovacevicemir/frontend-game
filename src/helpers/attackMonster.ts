@@ -37,7 +37,10 @@ export const attackMonster = (
   const computeOutcome = () => {
     if (playerHP > 0) {
       //Win
-      const drops = isDrop(monster.droppableItems, 99) as IItem[];
+      const drops = isDrop(
+        monster.droppableItems,
+        50 - monster.level * 3
+      ) as IItem[];
       const battleResults: IBattleResults = {
         player,
         monster,

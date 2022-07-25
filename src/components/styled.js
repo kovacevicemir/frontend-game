@@ -43,11 +43,13 @@ export const MainInfoBarStyle = styled.div`
   /* background-image: url(${Panel_1}); */
   background-image: url("https://img.freepik.com/premium-vector/abstract-futuristic-background-technology-sci-fi-frame-hud-ui_313905-455.jpg");
   background-size: 100% 100%;
+  box-shadow: inset 0px 0px 40px 40px rgba(0, 0, 0, 1);
   background-color: black;
   @media (max-width: 850px) {
     gap: 7px;
     padding: 20px 10px;
     font-size: 14px;
+    box-shadow: inset 0px 0px 15px 15px rgba(0, 0, 0, 1);
   }
 `;
 

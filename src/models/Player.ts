@@ -47,11 +47,11 @@ export class Player implements IPlayer {
       return;
     }
 
-    this.totalAttack = this.computeAttribute(10, levelBonusRatio, "attack");
-    this.totalDeffense = this.computeAttribute(5, levelBonusRatio, "deffense");
+    this.totalAttack = this.computeAttribute(9, levelBonusRatio, "attack");
+    this.totalDeffense = this.computeAttribute(4, 1, "deffense");
     this.totalHealthPoints = this.computeAttribute(
-      100,
-      levelBonusRatio,
+      99,
+      levelBonusRatio * 2,
       "healthPoints"
     );
   }
