@@ -10,8 +10,15 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
   nickname,
   fightLogIndex,
 }) => {
-  const { playerAttacks, monsterAttacks, gold, experience, monster, player } =
-    battleData;
+  const {
+    playerAttacks,
+    monsterAttacks,
+    gold,
+    experience,
+    monster,
+    player,
+    drops,
+  } = battleData;
 
   return (
     <>
@@ -78,6 +85,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
           {gold}
           <img src={Coins} alt="gold" width={30} />
           {experience} EXP
+          {drops.length > 0 && ` [${drops[0].name}]`}
         </div>
       </BattleOutcome>
     </>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Monster } from "../models/Monster";
-import Aic18 from "../images/Aic18.jpg";
 import { MobAttackButton, MonsterContainer } from "./styled";
 
 interface IRenderMobs {

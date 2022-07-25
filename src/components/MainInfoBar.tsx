@@ -1,6 +1,5 @@
 import React from "react";
 import bag from "../images/bag.png";
-import Panel_1 from "../images/Panel_1.png";
 import { GoldDisplayStyle, MainInfoBarStyle } from "./styled";
 
 interface IMainInfoBar {

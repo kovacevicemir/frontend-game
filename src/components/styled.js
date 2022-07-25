@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Panel_1 from "../images/Panel_1.png";
 import world1 from "../images/world1.gif";
 import Aic18 from "../images/Aic18.jpg";
 import Window03 from "../images/Window03.png";
 import MainPanel01 from "../images/MainPanel01.png";
+import FuturisticBg from "../images/FuturisticBg.png";
 
 export const MainLayout = styled.div`
   display: grid;
@@ -40,8 +40,7 @@ export const MainInfoBarStyle = styled.div`
   gap: 20px;
   font-size: 20px;
   color: #dfd5c3;
-  /* background-image: url(${Panel_1}); */
-  background-image: url("https://img.freepik.com/premium-vector/abstract-futuristic-background-technology-sci-fi-frame-hud-ui_313905-455.jpg");
+  background-image: url(${FuturisticBg});
   background-size: 100% 100%;
   box-shadow: inset 0px 0px 40px 40px rgba(0, 0, 0, 1);
   background-color: black;
@@ -90,6 +89,10 @@ export const MobAttackButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+  @media (max-width: 850px) {
+    height: 35px;
+    width: 35px;
+  }
 `;
 
 export const MonsterContainer = styled.div`
@@ -104,13 +107,16 @@ export const InventoryMainLayout = styled.div`
   color: #dfd5c3;
   min-height: 300px;
   padding: 50px 160px;
-  background-image: url("https://img.freepik.com/premium-vector/abstract-futuristic-background-technology-sci-fi-frame-hud-ui_313905-455.jpg");
+  background-image: url(${FuturisticBg});
   background-size: 100% 100%;
   background-color: black;
   box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 1);
   @media (max-width: 850px) {
     min-height: auto;
-    padding: 50px 50px;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 120px;
   }
 `;
 

@@ -1,8 +1,6 @@
-import { itemSlotNamesArray } from "../interfaces/IEquipedItems";
 import { IItem, itemSlotEnum } from "../interfaces/IItem";
 import { GameButton, ItemStatsStyle } from "./styled";
 import Button01 from "../images/Button01.png";
-import Button04 from "../images/Button04.png";
 import { imagePlaceholder } from "../helpers/imagePlaceholder";
 
 interface IRenderItem {

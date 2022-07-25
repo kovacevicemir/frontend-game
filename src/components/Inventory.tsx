@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { copyPlayer } from "../helpers/copyPlayer";
 import { IItem } from "../interfaces/IItem";
 import { Player } from "../models/Player";
-import Panel_1 from "../images/Panel_1.png";
 import {
   GameButton,
   InventoryItemsLayout,
