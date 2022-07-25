@@ -1,7 +1,7 @@
 import React from "react";
 import bag from "../images/bag.png";
 import Panel_1 from "../images/Panel_1.png";
-import { MainInfoBarStyle } from "./styled";
+import { GoldDisplayStyle, MainInfoBarStyle } from "./styled";
 
 interface IMainInfoBar {
   nickname: string;
@@ -20,18 +20,16 @@ const MainInfoBar: React.FC<IMainInfoBar> = (props: IMainInfoBar) => {
       <div>
         {props.nickname} [{props.level}]
       </div>
-      <div>Attack: {props.totalAttack}</div>
-      <div>Deffense: {props.totalDeffense}</div>
-      <div>Hp: {props.totalHealthPoints}</div>
+      <div>Attack [{props.totalAttack}]</div>
+      <div>Deffense [{props.totalDeffense}]</div>
+      <div>Hp [{props.totalHealthPoints}]</div>
       <div>
-        experience: {props.experience} / {props.experienceNeeded}
+        Experience [{props.experience} / {props.experienceNeeded}]
       </div>
-      <div
-        style={{ display: "flex", alignItems: "center", paddingLeft: "25px" }}
-      >
-        <img src={bag} alt="gold" width={45} />
+      <GoldDisplayStyle>
+        <img src={bag} alt="gold" width={40} />
         {props.gold}
-      </div>
+      </GoldDisplayStyle>
     </MainInfoBarStyle>
   );
 };

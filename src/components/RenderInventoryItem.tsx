@@ -18,7 +18,7 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
   handleEquip,
   handleDelete,
 }) => {
-  if (item === undefined) {
+  if (item === undefined || item === null) {
     return <></>;
   }
   return (

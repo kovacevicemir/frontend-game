@@ -14,8 +14,6 @@ export const attackMonster = (
   let playerHP: number = player.totalHealthPoints;
   let monsterHP: number = monster.healthPoints;
 
-  player.computePlayerStats();
-
   const addPlayerAttack = (): number => {
     let playerDamage: number;
     playerDamage = player.totalAttack + random(0, 5) - monster.deffense;

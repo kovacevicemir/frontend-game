@@ -1,9 +1,9 @@
 import React from "react";
 import { copyPlayer } from "../helpers/copyPlayer";
-import { IItem } from "../interfaces/IItem";
+import { IItem, itemSlotEnum } from "../interfaces/IItem";
 import { Player } from "../models/Player";
-import MainPanel01 from "../images/MainPanel01.png";
 import RenderItem from "./RenderItem";
+import { PlayerInfoLayout } from "./styled";
 
 interface IPlayerInfo {
   player: Player;
@@ -23,54 +23,49 @@ const PlayerInfo: React.FC<IPlayerInfo> = ({
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "10px",
-        minWidth: "300px",
-        backgroundImage: `url(${MainPanel01})`,
-        backgroundSize: "100% 100%",
-        backgroundColor: "black",
-        padding: "5%",
-      }}
-    >
-      <RenderItem item={null} handleUnequip={handleUnequip} />
+    <PlayerInfoLayout>
+      <RenderItem item={null} slot={null} handleUnequip={handleUnequip} />
       <RenderItem
         item={player.equipedItems.head}
+        slot={itemSlotEnum.head}
         handleUnequip={handleUnequip}
       />
       <RenderItem
         item={player.equipedItems.neck}
+        slot={itemSlotEnum.neck}
         handleUnequip={handleUnequip}
       />
       <RenderItem
         item={player.equipedItems.weapon}
+        slot={itemSlotEnum.weapon}
         handleUnequip={handleUnequip}
       />
       <RenderItem
         item={player.equipedItems.armor}
+        slot={itemSlotEnum.armor}
         handleUnequip={handleUnequip}
       />
       <RenderItem
         item={player.equipedItems.shield}
+        slot={itemSlotEnum.shield}
         handleUnequip={handleUnequip}
       />
       <RenderItem
         item={player.equipedItems.belt}
+        slot={itemSlotEnum.belt}
         handleUnequip={handleUnequip}
       />
       <RenderItem
         item={player.equipedItems.boots}
+        slot={itemSlotEnum.boots}
         handleUnequip={handleUnequip}
       />
       <RenderItem
         item={player.equipedItems.ring}
+        slot={itemSlotEnum.ring}
         handleUnequip={handleUnequip}
       />
-    </div>
+    </PlayerInfoLayout>
   );
 };
 

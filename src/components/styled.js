@@ -3,6 +3,7 @@ import Panel_1 from "../images/Panel_1.png";
 import world1 from "../images/world1.gif";
 import Aic18 from "../images/Aic18.jpg";
 import Window03 from "../images/Window03.png";
+import MainPanel01 from "../images/MainPanel01.png";
 
 export const MainLayout = styled.div`
   display: grid;
@@ -10,6 +11,10 @@ export const MainLayout = styled.div`
   grid-template-rows: 1fr 3fr 1fr;
   grid-template-columns: 2fr 1fr;
   text-align: center;
+  @media (max-width: 850px) {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const GameButton = styled.button`
@@ -35,9 +40,15 @@ export const MainInfoBarStyle = styled.div`
   gap: 20px;
   font-size: 20px;
   color: #dfd5c3;
-  background-image: url(${Panel_1});
+  /* background-image: url(${Panel_1}); */
+  background-image: url("https://img.freepik.com/premium-vector/abstract-futuristic-background-technology-sci-fi-frame-hud-ui_313905-455.jpg");
   background-size: 100% 100%;
   background-color: black;
+  @media (max-width: 850px) {
+    gap: 7px;
+    padding: 20px 10px;
+    font-size: 14px;
+  }
 `;
 
 export const WorldMainStyle = styled.div`
@@ -52,6 +63,9 @@ export const WorldMainStyle = styled.div`
   background-color: black;
   color: #fdfbf5;
   box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 1);
+  @media (max-width: 850px) {
+    padding-bottom: 25px;
+  }
 `;
 
 export const WorldMiddleLayout = styled.div`
@@ -60,7 +74,7 @@ export const WorldMiddleLayout = styled.div`
   gap: 5;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
+  min-height: 250px;
 `;
 
 export const MobAttackButton = styled.button`
@@ -84,6 +98,20 @@ export const MonsterContainer = styled.div`
   font-size: 18px;
 `;
 
+export const InventoryMainLayout = styled.div`
+  color: #dfd5c3;
+  min-height: 300px;
+  padding: 50px 160px;
+  background-image: url("https://img.freepik.com/premium-vector/abstract-futuristic-background-technology-sci-fi-frame-hud-ui_313905-455.jpg");
+  background-size: 100% 100%;
+  background-color: black;
+  box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 1);
+  @media (max-width: 850px) {
+    min-height: auto;
+    padding: 50px 50px;
+  }
+`;
+
 export const InventoryItemsLayout = styled.div`
   display: flex;
   flex-direction: row;
@@ -101,6 +129,9 @@ export const DisplayBattleLayout = styled.div`
   background-size: 100% 100%;
   width: 50%;
   min-height: 200px;
+  @media (max-width: 850px) {
+    width: 90%;
+  }
 `;
 
 export const BattleBox = styled.div`
@@ -120,4 +151,44 @@ export const BattleBox = styled.div`
 export const BattleOutcome = styled.div`
   position: relative;
   top: -55px;
+`;
+
+export const PlayerInfoLayout = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 300px;
+  background-image: url(${MainPanel01});
+  background-size: 100% 100%;
+  background-color: black;
+  padding: 5%;
+  @media (max-width: 850px) {
+    gap: 7px;
+    padding: 6% 3%;
+  }
+`;
+
+export const ItemStatsStyle = styled.div`
+  background-color: black;
+  opacity: 0.95;
+  border: 2px solid #ddc08c;
+  border-radius: 5px;
+  background-size: 100% 100%;
+  color: #fff;
+  padding: 7px 10px;
+  @media (max-width: 850px) {
+    opacity: 0.9;
+    font-size: 13px;
+  }
+`;
+
+export const GoldDisplayStyle = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
+  @media (max-width: 850px) {
+    padding-left: 0px;
+  }
 `;

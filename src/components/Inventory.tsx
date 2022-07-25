@@ -3,7 +3,11 @@ import { copyPlayer } from "../helpers/copyPlayer";
 import { IItem } from "../interfaces/IItem";
 import { Player } from "../models/Player";
 import Panel_1 from "../images/Panel_1.png";
-import { GameButton, InventoryItemsLayout } from "./styled";
+import {
+  GameButton,
+  InventoryItemsLayout,
+  InventoryMainLayout,
+} from "./styled";
 import Button01 from "../images/Button01.png";
 import Chest2 from "../images/Chest2.png";
 import RenderInventoryItem from "./RenderInventoryItem";
@@ -35,16 +39,7 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
   };
 
   return (
-    <div
-      style={{
-        color: "#dfd5c3",
-        padding: "5%",
-        minHeight: "300px",
-        backgroundImage: `url(${Panel_1})`,
-        backgroundSize: "100% 100%",
-        backgroundColor: "black",
-      }}
-    >
+    <InventoryMainLayout>
       <div
         style={{
           display: "flex",
@@ -80,7 +75,7 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
           );
         })}
       </InventoryItemsLayout>
-    </div>
+    </InventoryMainLayout>
   );
 };
 
