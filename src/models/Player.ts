@@ -13,6 +13,7 @@ import {
   getShopAttributeMultiplier,
   getShopPrice,
 } from "../helpers/shopAssetsHelper";
+import { IPlayerStatistics } from "../interfaces/IPlayerStatistics";
 
 export class Player implements IPlayer {
   id: number;
@@ -32,6 +33,10 @@ export class Player implements IPlayer {
     deffense: 0,
     healthPoints: 0,
   };
+  playerStatistics: IPlayerStatistics = {
+    monsterKilled: 0,
+    playersKilled: 0,
+  };
 
   constructor(
     id: number,
@@ -41,7 +46,8 @@ export class Player implements IPlayer {
     inventoryItems: IItem[],
     experience: number,
     gold: number,
-    shopAssets: IShopAssets
+    shopAssets: IShopAssets,
+    playerStatistics: IPlayerStatistics
   ) {
     this.id = id;
     this.nickname = nickname;
@@ -52,6 +58,7 @@ export class Player implements IPlayer {
     this.gold = gold;
     this.experienceNeeded = levelDefinitions.get(level + 1) as number;
     this.shopAssets = shopAssets;
+    this.playerStatistics = playerStatistics;
   }
 
   computePlayerStats(): void {
@@ -108,6 +115,11 @@ export class Player implements IPlayer {
     }
   }
 
+  increasePlayerStatistics(statisticName: keyof IPlayerStatistics) {
+    this.playerStatistics[statisticName]++;
+    this.computePlayerStats();
+  }
+
   addShopAsset(shopAssetName: keyof IShopAssets) {
     if (this.shopAssets[shopAssetName] < 3 && this.gold > 499) {
       this.shopAssets[shopAssetName] = this.shopAssets[shopAssetName] + 1;
@@ -119,6 +131,7 @@ export class Player implements IPlayer {
   addExpAndGold(battleResults: IBattleResults): void {
     if (battleResults.win) this.experience += battleResults.experience;
     this.gold += battleResults.gold;
+    this.increasePlayerStatistics("monsterKilled");
     this.increasePlayerLevel();
   }
 

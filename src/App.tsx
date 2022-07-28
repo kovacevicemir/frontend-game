@@ -35,7 +35,7 @@ const App = () => {
   ]);
 
   if (player == null) {
-    return <>Player is null</>;
+    return <>Loading...</>;
   }
 
   return (
@@ -50,7 +50,25 @@ const App = () => {
         experienceNeeded={player.experienceNeeded}
         gold={player.gold}
       />
-      <div style={{ background: "black" }}>11111</div>
+
+      <div
+        style={{
+          background: "black",
+          color: "#fff",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <div>Comming soon!</div>
+        <div>Players killed 0 | World ranking 0 </div>
+        <div>
+          Monsters killed {player.playerStatistics.monsterKilled} | World
+          ranking 0
+        </div>
+        <div>Gold {player.gold} | World ranking 0</div>
+      </div>
+
       <World player={player} setPlayer={setPlayer} />
       <PlayerInfo player={player} setPlayer={setPlayer} />
       <Inventory player={player} setPlayer={setPlayer} />

@@ -33,6 +33,10 @@ export const getPlayerFromDb = () => {
         attack: 0,
         deffense: 0,
         healthPoints: 0,
+      },
+      {
+        monsterKilled: 0,
+        playersKilled: 0,
       }
     );
     newPlayer.computePlayerStats();
