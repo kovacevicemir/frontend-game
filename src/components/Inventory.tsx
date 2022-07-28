@@ -18,6 +18,7 @@ interface IInventory {
 
 const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
   const [data, setData] = useState<IItem | null>(null);
+
   const handleEquip = (item: IItem) => {
     const cp = copyPlayer(player);
     cp.equipItem(item);
@@ -48,7 +49,7 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
           fontSize: "20px",
         }}
       >
-        <img src={Chest2} width={50} />
+        <img src={Chest2} width={50} alt="chest2" />
         {player.inventoryItems.length === 21 && "Full "}inventory{" "}
         {player.inventoryItems.length}/21
         <GameButton
@@ -65,6 +66,7 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
         {player.inventoryItems.map((item) => {
           return (
             <RenderInventoryItem
+              key={item.id}
               item={item}
               data={data}
               handleEquip={handleEquip}

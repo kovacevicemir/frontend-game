@@ -18,6 +18,7 @@ const RenderDifficulties: React.FC<IRenderDifficulties> = ({
         const dif = parseInt(key);
         return (
           <GameButton
+            key={key}
             // @ts-ignore
             image={Button01}
             opacity={`${difficulty === dif ? 0.6 : 1}`}

@@ -29,7 +29,9 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
           bgColor="rgb(80 80 80)"
         >
           <div>{nickname}</div>
-          <div>{playerAttacks[fightLogIndex]}</div>
+          <div style={{ color: "#FFF4FC" }}>
+            -{monsterAttacks[fightLogIndex]}
+          </div>
 
           <Line
             percent={hpLeft({
@@ -38,12 +40,12 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               attacks: monsterAttacks,
             })}
             strokeWidth={4}
-            strokeColor="#D3D3D3"
+            strokeColor="#1dad1d"
           />
         </BattleBox>
         <div
           style={{
-            width: "60px",
+            width: "40px",
             height: "40px",
             display: "flex",
             justifyContent: "center",
@@ -56,13 +58,12 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
         </div>
 
         <BattleBox
-          color="#31041e"
+          color="#FFF4FC"
           // @ts-ignore
           bgColor="rgb(80 80 80)"
         >
           <div>Monster</div>
-          <div>{monsterAttacks[fightLogIndex]}</div>
-
+          <div style={{ color: "orange" }}>{playerAttacks[fightLogIndex]} </div>
           <Line
             percent={hpLeft({
               maxHealth: monster.healthPoints,
@@ -70,7 +71,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               attacks: playerAttacks,
             })}
             strokeWidth={4}
-            strokeColor="#D3D3D3"
+            strokeColor="#1dad1d"
           />
         </BattleBox>
       </DisplayBattleLayout>
@@ -82,10 +83,18 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
             alignItems: "center",
           }}
         >
-          {gold}
-          <img src={Coins} alt="gold" width={30} />
-          {experience} EXP
-          {drops.length > 0 && ` [${drops[0].name}]`}
+          {experience === 0 ? (
+            <p style={{ color: "red", fontSize: "17px", fontWeight: "bolder" }}>
+              You lost the battle!
+            </p>
+          ) : (
+            <>
+              {gold}
+              <img src={Coins} alt="gold" width={30} />
+              {experience} EXP
+              {drops.length > 0 && ` [${drops[0].name}]`}
+            </>
+          )}
         </div>
       </BattleOutcome>
     </>

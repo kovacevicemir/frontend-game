@@ -23,6 +23,7 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
   }
   return (
     <div
+      key={item.id}
       onMouseEnter={() => setData(item)}
       onMouseLeave={() => setData(null)}
       style={{
@@ -36,6 +37,8 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
     >
       [{item.name}]
       <div
+        key={item.id + "@hover"}
+        id="onInventoryItemHover"
         style={{
           display: data?.id === item.id ? "" : "none",
           position: "absolute",
@@ -46,13 +49,11 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
           fontSize: "14px",
         }}
       >
-        [{item.name}]<br />
-        Attack: {item.attack}
-        <br />
-        Deffense: {item.deffense}
-        <br />
-        Hp: {item.healthPoints}
-        <br />
+        <div>[{item.name}]</div>
+        <div>Attack {item.attack}</div>
+        <div>Deffense {item.deffense}</div>
+        <div>Hp {item.healthPoints}</div>
+
         <GameButton
           //@ts-ignore
           image={Button01}

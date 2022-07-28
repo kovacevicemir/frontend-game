@@ -36,4 +36,30 @@ export const monstersDictionary: Record<number, object> = {
     3
   ),
   4: new Monster(4, "Monster", 4, 40, 18, 80, [items[13], items[14]], 4, 4),
+  5: new Monster(5, "Monster", 5, 40, 22, 105, [items[15], items[16]], 6, 8),
+  6: new Monster(6, "Monster", 6, 50, 20, 125, [items[17]], 7, 8),
+  7: new Monster(7, "Monster", 7, 52, 25, 150, [items[18]], 8, 8),
+  8: new Monster(8, "Monster", 8, 52, 30, 190, [items[18], items[19]], 10, 8),
+  9: new Monster(
+    9,
+    "Monster",
+    9,
+    50,
+    25,
+    250,
+    [items[18], items[19], items[20]],
+    11,
+    8
+  ),
+  10: new Monster(
+    10,
+    "Monster",
+    10,
+    67,
+    21,
+    250,
+    [items[18], items[19], items[20], items[21]],
+    10,
+    10
+  ),
 };

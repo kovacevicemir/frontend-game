@@ -144,8 +144,8 @@ export const DisplayBattleLayout = styled.div`
 
 export const BattleBox = styled.div`
   border-radius: 5px;
-  width: 100px;
-  height: 60px;
+  width: 140px;
+  height: 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -13,7 +13,7 @@ import { WorldMiddleLayout, GameButton, WorldMainStyle } from "./styled";
 
 interface IWorld {
   player: Player;
-  setPlayer: any;
+  setPlayer: (player: Player) => void;
 }
 
 const World = ({ player, setPlayer }: IWorld) => {

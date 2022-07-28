@@ -17,9 +17,9 @@ const RenderMobs: React.FC<IRenderMobs> = ({ monsters, handleMobAttack }) => {
         gap: 5,
       }}
     >
-      {monsters.map((mob: Monster) => {
+      {monsters.map((mob: Monster, index: number) => {
         return (
-          <MonsterContainer>
+          <MonsterContainer key={index}>
             <div>
               {mob.name} [{mob.level}]
             </div>
