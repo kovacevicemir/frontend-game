@@ -43,6 +43,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
             strokeColor="#1dad1d"
           />
         </BattleBox>
+
         <div
           style={{
             width: "40px",
@@ -75,6 +76,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
           />
         </BattleBox>
       </DisplayBattleLayout>
+
       <BattleOutcome>
         <div
           style={{

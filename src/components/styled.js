@@ -5,6 +5,13 @@ import Window03 from "../images/Window03.png";
 import MainPanel01 from "../images/MainPanel01.png";
 import FuturisticBg from "../images/FuturisticBg.png";
 
+export const CenterAlign = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const MainLayout = styled.div`
   display: grid;
   height: 100vh;
@@ -92,6 +99,47 @@ export const MobAttackButton = styled.button`
   @media (max-width: 850px) {
     height: 35px;
     width: 35px;
+  }
+`;
+
+export const ShopLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 100px;
+  padding-left: 33%;
+  font-size: 20px;
+  background-color: navy;
+  box-shadow: inset 0px 0px 100px 60px rgba(0, 0, 0, 1);
+  @media (max-width: 850px) {
+    padding-left: 20%;
+    font-size: 17px;
+  }
+`;
+
+export const ShopItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 220px;
+  color: #fff;
+  @media (max-width: 850px) {
+    margin-bottom: 5px;
+  }
+`;
+
+export const ShopButton = styled.button`
+  width: 25px;
+  height: 25px;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #fff;
+  &:hover {
+    cursor: pointer;
+    background-color: black;
   }
 `;
 

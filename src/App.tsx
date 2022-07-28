@@ -8,6 +8,7 @@ import Inventory from "./components/Inventory";
 import PlayerInfo from "./components/PlayerInfo";
 import { clearAll } from "./data/localStorage";
 import { MainLayout } from "./components/styled";
+import Shop from "./components/Shop";
 
 const App = () => {
   const [player, setPlayer] = useState<Player | null>(null);
@@ -30,6 +31,7 @@ const App = () => {
     player?.equipedItems,
     player?.experience,
     player?.gold,
+    player?.shopAssets,
   ]);
 
   if (player == null) {
@@ -48,11 +50,11 @@ const App = () => {
         experienceNeeded={player.experienceNeeded}
         gold={player.gold}
       />
-      <div style={{ background: "black" }}></div>
+      <div style={{ background: "black" }}>11111</div>
       <World player={player} setPlayer={setPlayer} />
       <PlayerInfo player={player} setPlayer={setPlayer} />
       <Inventory player={player} setPlayer={setPlayer} />
-      <div style={{ background: "black" }}></div>
+      <Shop player={player} setPlayer={setPlayer} />
     </MainLayout>
   );
 };

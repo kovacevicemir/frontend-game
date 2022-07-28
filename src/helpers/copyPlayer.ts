@@ -8,6 +8,7 @@ export const copyPlayer = (player: Player): Player => {
     player.equipedItems,
     player.inventoryItems,
     player.experience,
-    player.gold
+    player.gold,
+    player.shopAssets
   );
 };

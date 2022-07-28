@@ -10,6 +10,7 @@ import RenderMobs from "./RenderMobs";
 import RenderDifficulties from "./RenderDifficulties";
 import Button01 from "../images/Button01.png";
 import { WorldMiddleLayout, GameButton, WorldMainStyle } from "./styled";
+import { getShopAttributeMultiplier } from "../helpers/shopAssetsHelper";
 
 interface IWorld {
   player: Player;
@@ -46,15 +47,20 @@ const World = ({ player, setPlayer }: IWorld) => {
 
   useEffect(() => {
     if (battleData) {
+      const timing =
+        1000 -
+        player.shopAssets.attackSpeed *
+          getShopAttributeMultiplier("attackSpeed");
+
       let interval = setInterval(() => {
         setFightLogIndex((prev) => prev + 1);
-      }, 750);
+      }, timing);
 
       return () => {
         clearInterval(interval);
       };
     }
-  }, [battleData]);
+  }, [battleData, player]);
 
   useEffect(() => {
     setMonsters(generateMobsArray(difficulty));

@@ -27,7 +27,13 @@ export const getPlayerFromDb = () => {
       },
       [],
       0,
-      0
+      0,
+      {
+        attackSpeed: 0,
+        attack: 0,
+        deffense: 0,
+        healthPoints: 0,
+      }
     );
     newPlayer.computePlayerStats();
     set("Player", newPlayer);

@@ -1,3 +1,4 @@
+import { IShopAssets } from "./../interfaces/IShopAssets";
 import {
   levelDefinitions,
   levelStatsDefinitions,
@@ -8,6 +9,10 @@ import { IEquipedItems, itemSlotNamesArray } from "../interfaces/IEquipedItems";
 import { IItem } from "../interfaces/IItem";
 import { IPlayer } from "../interfaces/IPlayer";
 import _ from "lodash";
+import {
+  getShopAttributeMultiplier,
+  getShopPrice,
+} from "../helpers/shopAssetsHelper";
 
 export class Player implements IPlayer {
   id: number;
@@ -21,6 +26,12 @@ export class Player implements IPlayer {
   experience: number = 0;
   experienceNeeded: number;
   gold: number = 0;
+  shopAssets: IShopAssets = {
+    attackSpeed: 0,
+    attack: 0,
+    deffense: 0,
+    healthPoints: 0,
+  };
 
   constructor(
     id: number,
@@ -29,7 +40,8 @@ export class Player implements IPlayer {
     equipedItems: IEquipedItems,
     inventoryItems: IItem[],
     experience: number,
-    gold: number
+    gold: number,
+    shopAssets: IShopAssets
   ) {
     this.id = id;
     this.nickname = nickname;
@@ -39,6 +51,7 @@ export class Player implements IPlayer {
     this.experience = experience;
     this.gold = gold;
     this.experienceNeeded = levelDefinitions.get(level + 1) as number;
+    this.shopAssets = shopAssets;
   }
 
   computePlayerStats(): void {
@@ -47,13 +60,17 @@ export class Player implements IPlayer {
       return;
     }
 
-    this.totalAttack = this.computeAttribute(9, levelBonusRatio, "attack");
-    this.totalDeffense = this.computeAttribute(4, 1, "deffense");
-    this.totalHealthPoints = this.computeAttribute(
-      99,
-      levelBonusRatio * 2,
-      "healthPoints"
-    );
+    this.totalAttack =
+      this.computeAttribute(9, levelBonusRatio, "attack") +
+      this.shopAssets.attack * getShopAttributeMultiplier("attack");
+
+    this.totalDeffense =
+      this.computeAttribute(4, 1, "deffense") +
+      this.shopAssets.deffense * getShopAttributeMultiplier("deffense");
+
+    this.totalHealthPoints =
+      this.computeAttribute(99, levelBonusRatio * 2, "healthPoints") +
+      this.shopAssets.healthPoints * getShopAttributeMultiplier("healthPoints");
   }
 
   computeAttribute(
@@ -89,6 +106,14 @@ export class Player implements IPlayer {
       this.experienceNeeded = levelDefinitions.get(this.level + 2) as number;
       this.computePlayerStats();
     }
+  }
+
+  addShopAsset(shopAssetName: keyof IShopAssets) {
+    if (this.shopAssets[shopAssetName] < 3 && this.gold > 499) {
+      this.shopAssets[shopAssetName] = this.shopAssets[shopAssetName] + 1;
+      this.gold = this.gold - getShopPrice();
+    }
+    this.computePlayerStats();
   }
 
   addExpAndGold(battleResults: IBattleResults): void {
