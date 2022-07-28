@@ -1,7 +1,8 @@
 # https://www.youtube.com/watch?v=lsrbnlZnQpM
-# push new/update:  docker build -t aegis2 .   
-# docker push emirkovacevic/aegis2:latest locally..
-# docker pull emirkovacevic/aegis2 from ec2..
+# https://docs.docker.com/docker-hub/repos/#:~:text=To%20push%20an%20image%20to,docs%2Fbase%3Atesting%20).
+# push new/update:  docker build -t emirkovacevic/aegis7:aegis7
+# docker push emirkovacevic/aegis2:aegis7
+# docker pull emirkovacevic/aegis2:aegis7 from ec2..
 # docker run -itd -p 80:80 emirkovacevic/aegis2
 
 FROM node:16-alpine AS builder

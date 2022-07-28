@@ -63,7 +63,7 @@ const App = () => {
         <div>Comming soon!</div>
         <div>Players killed 0 | World ranking 0 </div>
         <div>
-          Monsters killed {player.playerStatistics.monsterKilled} | World
+          Monsters killed {player?.playerStatistics?.monsterKilled} | World
           ranking 0
         </div>
         <div>Gold {player.gold} | World ranking 0</div>
