@@ -21,13 +21,13 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
     <ShopLayout>
       <ShopItem>
         <CenterAlign style={{ color: "#7d7d7d" }}>
-          <img src={Coins} alt="coins" width={30} /> 500 each
+          <img src={Coins} alt="coins" width={30} /> 1000 each
         </CenterAlign>
       </ShopItem>
       <ShopItem>
         Attack speed +1
         <div>
-          {player.shopAssets.attackSpeed}/3{" "}
+          {player?.shopAssets?.attackSpeed}/5{" "}
           <ShopButton
             onClick={() => {
               handleBuyAsset("attackSpeed");
@@ -38,9 +38,9 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
         </div>
       </ShopItem>
       <ShopItem>
-        Attack{" +7"}
+        Attack{" +10"}
         <div>
-          {player.shopAssets.attack}/3{" "}
+          {player?.shopAssets?.attack}/5{" "}
           <ShopButton
             onClick={() => {
               handleBuyAsset("attack");
@@ -51,9 +51,9 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
         </div>
       </ShopItem>
       <ShopItem>
-        Deffense{" +4"}
+        Deffense{" +5"}
         <div>
-          {player.shopAssets.deffense}/3{" "}
+          {player?.shopAssets?.deffense}/5{" "}
           <ShopButton
             onClick={() => {
               handleBuyAsset("deffense");
@@ -64,9 +64,9 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
         </div>
       </ShopItem>
       <ShopItem>
-        Health {" +20"}
+        Health {" +30"}
         <div>
-          {player.shopAssets.healthPoints}/3{" "}
+          {player?.shopAssets?.healthPoints}/5{" "}
           <ShopButton
             onClick={() => {
               handleBuyAsset("healthPoints");

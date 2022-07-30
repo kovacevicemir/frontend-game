@@ -1,13 +1,13 @@
 export const getShopAttributeMultiplier = (shopAssetName: string) => {
   switch (shopAssetName) {
     case "attackSpeed":
-      return 175;
+      return 100;
     case "attack":
-      return 7;
+      return 10;
     case "deffense":
-      return 4;
+      return 5;
     case "healthPoints":
-      return 20;
+      return 30;
     default:
       return 0;
   }

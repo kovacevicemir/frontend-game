@@ -82,4 +82,114 @@ export const monstersDictionary: Record<number, object> = {
     10,
     10
   ),
+  11: new Monster(
+    11,
+    "Alpha Monster",
+    11,
+    90,
+    30,
+    300,
+    [items[22], items[19], items[20], items[21]],
+    10,
+    10
+  ),
+  12: new Monster(
+    12,
+    "Syndicate member",
+    12,
+    105,
+    30,
+    355,
+    [items[22], items[23], items[20], items[21]],
+    11,
+    10
+  ),
+  13: new Monster(
+    13,
+    "Syndicate guard",
+    13,
+    120,
+    30,
+    415,
+    [items[22], items[23], items[24], items[21]],
+    11,
+    10
+  ),
+  14: new Monster(
+    14,
+    "Shadow",
+    14,
+    139,
+    30,
+    482,
+    [items[22], items[23], items[24], items[25]],
+    12,
+    10
+  ),
+  15: new Monster(
+    15,
+    "Mask of madness",
+    15,
+    159,
+    30,
+    555,
+    [items[26], items[23], items[24], items[25]],
+    12,
+    11
+  ),
+  16: new Monster(
+    16,
+    "Mask of hatred",
+    16,
+    181,
+    30,
+    635,
+    [items[26], items[27], items[24], items[25]],
+    12,
+    11
+  ),
+  17: new Monster(
+    17,
+    "Syndicate mage",
+    17,
+    205,
+    30,
+    725,
+    [items[26], items[27], items[25]],
+    13,
+    11
+  ),
+  18: new Monster(
+    18,
+    "Iron dog",
+    18,
+    232,
+    30,
+    821,
+    [items[26], items[27], items[28], items[25]],
+    13,
+    11
+  ),
+  19: new Monster(
+    19,
+    "Sub Boss of darkness",
+    19,
+    261,
+    30,
+    928,
+    [items[26], items[27], items[28], items[25]],
+    14,
+    12
+  ),
+  20: new Monster(
+    20,
+    "Boss of darkness",
+    20,
+    293,
+    30,
+    1047,
+    [items[26], items[27], items[28], items[29]],
+    15,
+    12
+  ),
 };

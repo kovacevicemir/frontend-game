@@ -5,6 +5,52 @@ import Window03 from "../images/Window03.png";
 import MainPanel01 from "../images/MainPanel01.png";
 import FuturisticBg from "../images/FuturisticBg.png";
 
+export const NotificationLayout = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+`;
+
+export const NotificationPanel = styled.div`
+  color: #fff;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`;
+
+export const HorizontalScrollbar = styled.div`
+  display: inline-block;
+  white-space: nowrap;
+  overflow: auto;
+  width: 350px;
+  margin: 0px 20px;
+  &::-webkit-scrollbar {
+    height: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3); /* color of the scroll thumb */
+    border-radius: 10px; /* roundness of the scroll thumb */
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  @media (max-width: 850px) {
+    &::-webkit-scrollbar {
+      height: 0px;
+      direction: ltr;
+    }
+  }
+`;
+
 export const CenterAlign = styled.div`
   display: flex;
   flex-direction: row;
@@ -27,6 +73,7 @@ export const MainLayout = styled.div`
 export const GameButton = styled.button`
   opacity: ${({ opacity }) => opacity};
   padding: 5px;
+  margin-right: 5px;
   font-size: 15px;
   background-image: ${(props) => `url(${props.image})`};
   background-size: "cover";
@@ -40,6 +87,7 @@ export const GameButton = styled.button`
 `;
 
 export const MainInfoBarStyle = styled.div`
+  font-family: monospace;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -52,9 +100,10 @@ export const MainInfoBarStyle = styled.div`
   box-shadow: inset 0px 0px 40px 40px rgba(0, 0, 0, 1);
   background-color: black;
   @media (max-width: 850px) {
+    flex-direction: column;
     gap: 7px;
     padding: 20px 10px;
-    font-size: 14px;
+    font-size: 15px;
     box-shadow: inset 0px 0px 15px 15px rgba(0, 0, 0, 1);
   }
 `;
@@ -82,7 +131,7 @@ export const WorldMiddleLayout = styled.div`
   gap: 5;
   justify-content: center;
   align-items: center;
-  min-height: 250px;
+  min-height: 275px;
 `;
 
 export const MobAttackButton = styled.button`

@@ -67,16 +67,24 @@ export class Player implements IPlayer {
       return;
     }
 
+    const attackLevelBonusMultiplier = Math.round(
+      levelBonusRatio * (this.level < 15 ? 1 : 1.5)
+    );
+    const deffenseLevelBonusMultiplier = this.level < 15 ? 1 : 10;
+    const hpLevelBonusMultiplier = Math.round(
+      levelBonusRatio * (this.level < 15 ? 2 : 4)
+    );
+
     this.totalAttack =
-      this.computeAttribute(9, levelBonusRatio, "attack") +
+      this.computeAttribute(9, attackLevelBonusMultiplier, "attack") +
       this.shopAssets.attack * getShopAttributeMultiplier("attack");
 
     this.totalDeffense =
-      this.computeAttribute(4, 1, "deffense") +
+      this.computeAttribute(4, deffenseLevelBonusMultiplier, "deffense") +
       this.shopAssets.deffense * getShopAttributeMultiplier("deffense");
 
     this.totalHealthPoints =
-      this.computeAttribute(99, levelBonusRatio * 2, "healthPoints") +
+      this.computeAttribute(99, hpLevelBonusMultiplier, "healthPoints") +
       this.shopAssets.healthPoints * getShopAttributeMultiplier("healthPoints");
   }
 
@@ -110,7 +118,7 @@ export class Player implements IPlayer {
   increasePlayerLevel(): void {
     if (this.isLevelUp()) {
       this.level = this.level + 1;
-      this.experienceNeeded = levelDefinitions.get(this.level + 2) as number;
+      this.experienceNeeded = levelDefinitions.get(this.level + 1) as number;
       this.computePlayerStats();
     }
   }
@@ -121,7 +129,7 @@ export class Player implements IPlayer {
   }
 
   addShopAsset(shopAssetName: keyof IShopAssets) {
-    if (this.shopAssets[shopAssetName] < 3 && this.gold > 499) {
+    if (this.shopAssets[shopAssetName] < 5 && this.gold > 999) {
       this.shopAssets[shopAssetName] = this.shopAssets[shopAssetName] + 1;
       this.gold = this.gold - getShopPrice();
     }

@@ -1,33 +1,37 @@
 import React from "react";
 import bag from "../images/bag.png";
+import { Player } from "../models/Player";
 import { GoldDisplayStyle, MainInfoBarStyle } from "./styled";
 
 interface IMainInfoBar {
-  nickname: string;
-  level: number;
-  totalAttack: number;
-  totalDeffense: number;
-  totalHealthPoints: number;
-  experience: number;
-  experienceNeeded: number;
-  gold: number;
+  player: Player;
 }
 
-const MainInfoBar: React.FC<IMainInfoBar> = (props: IMainInfoBar) => {
+const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
+  const {
+    nickname,
+    level,
+    totalAttack,
+    totalDeffense,
+    totalHealthPoints,
+    experience,
+    experienceNeeded,
+    gold,
+  } = player;
   return (
     <MainInfoBarStyle>
       <div>
-        {props.nickname} [{props.level}]
+        {nickname} [{level}]
       </div>
-      <div>Attack [{props.totalAttack}]</div>
-      <div>Deffense [{props.totalDeffense}]</div>
-      <div>Hp [{props.totalHealthPoints}]</div>
+      <div>Attack [{totalAttack}]</div>
+      <div>Deffense [{totalDeffense}]</div>
+      <div>Hp [{totalHealthPoints}]</div>
       <div>
-        Experience [{props.experience} / {props.experienceNeeded}]
+        Experience [{experience} / {experienceNeeded}]
       </div>
       <GoldDisplayStyle>
         <img src={bag} alt="gold" width={40} />
-        {props.gold}
+        {gold}
       </GoldDisplayStyle>
     </MainInfoBarStyle>
   );

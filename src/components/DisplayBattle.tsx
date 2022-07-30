@@ -40,7 +40,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               attacks: monsterAttacks,
             })}
             strokeWidth={4}
-            strokeColor="#1dad1d"
+            strokeColor="#0c920c"
           />
         </BattleBox>
 
@@ -72,7 +72,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               attacks: playerAttacks,
             })}
             strokeWidth={4}
-            strokeColor="#1dad1d"
+            strokeColor="#0c920c"
           />
         </BattleBox>
       </DisplayBattleLayout>

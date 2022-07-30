@@ -3,6 +3,7 @@ import { IBattleResults } from "../interfaces/IBattleResults";
 import { IItem } from "../interfaces/IItem";
 import { Monster } from "../models/Monster";
 import { Player } from "../models/Player";
+import { dropChances } from "./dropChanges";
 import { isDrop } from "./isDrop";
 
 export const attackMonster = (
@@ -35,11 +36,13 @@ export const attackMonster = (
   };
 
   const computeOutcome = () => {
+    const dropChance = dropChances.get(monster.level);
+
     if (playerHP > 0) {
       //Win
       const drops = isDrop(
         monster.droppableItems,
-        50 - monster.level * 3
+        dropChance ? dropChance : 1
       ) as IItem[];
       const battleResults: IBattleResults = {
         player,
