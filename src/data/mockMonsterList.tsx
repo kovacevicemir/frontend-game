@@ -133,7 +133,7 @@ export const monstersDictionary: Record<number, object> = {
     159,
     30,
     555,
-    [items[26], items[23], items[24], items[25]],
+    [items[26], items[30], items[24], items[25]],
     12,
     11
   ),
@@ -155,7 +155,7 @@ export const monstersDictionary: Record<number, object> = {
     205,
     30,
     725,
-    [items[26], items[27], items[25]],
+    [items[26], items[27], items[25], items[30]],
     13,
     11
   ),
@@ -188,7 +188,7 @@ export const monstersDictionary: Record<number, object> = {
     293,
     30,
     1047,
-    [items[26], items[27], items[28], items[29]],
+    [items[30], items[27], items[28], items[29]],
     15,
     12
   ),

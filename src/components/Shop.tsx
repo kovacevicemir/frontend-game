@@ -4,6 +4,11 @@ import { CenterAlign, ShopButton, ShopItem, ShopLayout } from "./styled";
 import Coins from "../images/Coins.png";
 import { copyPlayer } from "../helpers/copyPlayer";
 import { IShopAssets } from "../interfaces/IShopAssets";
+import {
+  getShopAttributeMultiplier,
+  getShopPrice,
+} from "../helpers/shopAssetsHelper";
+import { settings } from "../helpers/settings";
 
 interface IShop {
   player: Player;
@@ -21,13 +26,13 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
     <ShopLayout>
       <ShopItem>
         <CenterAlign style={{ color: "#7d7d7d" }}>
-          <img src={Coins} alt="coins" width={30} /> 1000 each
+          <img src={Coins} alt="coins" width={30} /> {getShopPrice()} each
         </CenterAlign>
       </ShopItem>
       <ShopItem>
         Attack speed +1
         <div>
-          {player?.shopAssets?.attackSpeed}/5{" "}
+          {player?.shopAssets?.attackSpeed}/{settings.maxShopAssets}
           <ShopButton
             onClick={() => {
               handleBuyAsset("attackSpeed");
@@ -38,9 +43,9 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
         </div>
       </ShopItem>
       <ShopItem>
-        Attack{" +10"}
+        Attack +{getShopAttributeMultiplier("attack")}
         <div>
-          {player?.shopAssets?.attack}/5{" "}
+          {player?.shopAssets?.attack}/{settings.maxShopAssets}
           <ShopButton
             onClick={() => {
               handleBuyAsset("attack");
@@ -51,9 +56,9 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
         </div>
       </ShopItem>
       <ShopItem>
-        Deffense{" +5"}
+        Deffense +{getShopAttributeMultiplier("deffense")}
         <div>
-          {player?.shopAssets?.deffense}/5{" "}
+          {player?.shopAssets?.deffense}/{settings.maxShopAssets}
           <ShopButton
             onClick={() => {
               handleBuyAsset("deffense");
@@ -64,9 +69,9 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
         </div>
       </ShopItem>
       <ShopItem>
-        Health {" +30"}
+        Health +{getShopAttributeMultiplier("healthPoints")}
         <div>
-          {player?.shopAssets?.healthPoints}/5{" "}
+          {player?.shopAssets?.healthPoints}/{settings.maxShopAssets}
           <ShopButton
             onClick={() => {
               handleBuyAsset("healthPoints");

@@ -11,6 +11,8 @@ import RenderDifficulties from "./RenderDifficulties";
 import Button01 from "../images/Button01.png";
 import { WorldMiddleLayout, GameButton, WorldMainStyle } from "./styled";
 import { getShopAttributeMultiplier } from "../helpers/shopAssetsHelper";
+import { settings } from "../helpers/settings";
+import { worldImageDefinitions } from "../helpers/worldImageDefinitions";
 
 interface IWorld {
   player: Player;
@@ -22,6 +24,7 @@ const World = ({ player, setPlayer }: IWorld) => {
   const [monsters, setMonsters] = useState<Monster[]>([]);
   const [battleData, setBattleData] = useState<IBattleResults | null>(null);
   const [fightLogIndex, setFightLogIndex] = useState(0);
+  const [worldImageIndex, setWorldImageIndex] = useState(1);
 
   const handleMobAttack = (mob: Monster) => {
     //dont switch order!! bug prone
@@ -41,14 +44,35 @@ const World = ({ player, setPlayer }: IWorld) => {
     }
   };
 
+  const handleFirstMobAttack = () => {
+    monsters.length > 0 && handleMobAttack(monsters[0]);
+  };
+
   const handleSearchMonsters = () => {
+    setBattleData(null);
     setMonsters(generateMobsArray(difficulty));
   };
 
   useEffect(() => {
+    const handleKeyDown = (event: any) => {
+      switch (event.keyCode) {
+        case 65:
+          handleFirstMobAttack();
+          break;
+        case 69:
+          handleSearchMonsters();
+          break;
+        default:
+          break;
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+  }, []);
+
+  useEffect(() => {
     if (battleData) {
       const timing =
-        1000 -
+        settings.timing -
         player.shopAssets.attackSpeed *
           getShopAttributeMultiplier("attackSpeed");
 
@@ -64,19 +88,27 @@ const World = ({ player, setPlayer }: IWorld) => {
 
   useEffect(() => {
     setMonsters(generateMobsArray(difficulty));
+    const i = worldImageDefinitions.get(difficulty);
+    i !== undefined && setWorldImageIndex(i);
   }, [difficulty]);
 
   return (
-    <WorldMainStyle>
+    <WorldMainStyle
+      //@ts-ignore
+      worldImageIndex={worldImageIndex}
+    >
       <RenderDifficulties
         difficulty={difficulty}
         setDifficulty={setDifficulty}
+        setBattleData={setBattleData}
+        disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
       />
 
       <WorldMiddleLayout>
-        {!battleData?.playerAttacks[fightLogIndex] && (
-          <RenderMobs monsters={monsters} handleMobAttack={handleMobAttack} />
-        )}
+        {!battleData?.playerAttacks[fightLogIndex] &&
+          battleData?.win !== false && (
+            <RenderMobs monsters={monsters} handleMobAttack={handleMobAttack} />
+          )}
         {battleData?.playerAttacks[fightLogIndex] !== undefined && (
           <DisplayBattle
             battleData={battleData}
@@ -92,8 +124,18 @@ const World = ({ player, setPlayer }: IWorld) => {
           image={Button01}
           onClick={() => handleSearchMonsters()}
           letterSpacing={"2px"}
+          disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
         >
           Explore
+        </GameButton>
+        <GameButton
+          // @ts-ignore
+          image={Button01}
+          onClick={() => handleFirstMobAttack()}
+          letterSpacing={"3px"}
+          disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
+        >
+          Attack
         </GameButton>
       </div>
     </WorldMainStyle>

@@ -17,7 +17,9 @@ const RenderKillStats: React.FC<IRenderKillStats> = ({ player }) => {
         padding: "10px",
       }}
     >
-      <div>Monsters killed {player?.playerStatistics?.monsterKilled}</div>
+      <div style={{ fontFamily: "monospace" }}>
+        Monsters killed {player?.playerStatistics?.monsterKilled}
+      </div>
     </div>
   );
 };

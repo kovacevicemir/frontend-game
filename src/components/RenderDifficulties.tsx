@@ -6,11 +6,15 @@ import Button01 from "../images/Button01.png";
 interface IRenderDifficulties {
   difficulty: number;
   setDifficulty: (difficulty: number) => void;
+  setBattleData: (value: null) => void;
+  disabled: boolean;
 }
 
 const RenderDifficulties: React.FC<IRenderDifficulties> = ({
   difficulty,
   setDifficulty,
+  setBattleData,
+  disabled,
 }) => {
   return (
     <div>
@@ -23,7 +27,12 @@ const RenderDifficulties: React.FC<IRenderDifficulties> = ({
               // @ts-ignore
               image={Button01}
               opacity={`${difficulty === dif ? 0.6 : 1}`}
-              onClick={() => setDifficulty(dif)}
+              onClick={() => {
+                if (disabled === false) {
+                  setDifficulty(dif);
+                  setBattleData(null);
+                }
+              }}
               letterSpacing={"1px"}
             >
               Sector {dif}

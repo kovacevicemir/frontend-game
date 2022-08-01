@@ -27,9 +27,8 @@ export const levelDefinitions = new Map([
   [27, 63317],
   [28, 70898],
   [29, 79232],
-  [30, 88421],
-  [31, 100000],
-  [32, 99999999],
+  [30, 100000],
+  [31, 999999],
 ]);
 
 //generate lvls 10% or multiplier
@@ -70,16 +69,5 @@ export const levelStatsDefinitions = new Map([
   [28, 1090],
   [29, 1206],
   [30, 1332],
-  [31, 1472],
-  [32, 99999999],
+  [31, 99999999],
 ]);
-
-let ssss: number[] = [];
-//@ts-ignore
-for (let i = 0; i < 50; i++) {
-  if (ssss.length > 1) {
-    ssss.push(ssss[i - 1] + ssss[i - 1] * 0.1);
-  } else {
-    ssss.push(ssss[i] + ssss[i] * 0.1);
-  }
-}

@@ -129,7 +129,7 @@ export class Player implements IPlayer {
   }
 
   addShopAsset(shopAssetName: keyof IShopAssets) {
-    if (this.shopAssets[shopAssetName] < 5 && this.gold > 999) {
+    if (this.shopAssets[shopAssetName] < 5 && this.gold > getShopPrice() - 1) {
       this.shopAssets[shopAssetName] = this.shopAssets[shopAssetName] + 1;
       this.gold = this.gold - getShopPrice();
     }

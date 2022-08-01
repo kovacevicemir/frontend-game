@@ -27,7 +27,7 @@ const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
       <div>Deffense [{totalDeffense}]</div>
       <div>Hp [{totalHealthPoints}]</div>
       <div>
-        Experience [{experience} / {experienceNeeded}]
+        Experience [{experience}/{experienceNeeded}]
       </div>
       <GoldDisplayStyle>
         <img src={bag} alt="gold" width={40} />

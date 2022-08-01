@@ -14,5 +14,5 @@ export const getShopAttributeMultiplier = (shopAssetName: string) => {
 };
 
 export const getShopPrice = () => {
-  return 500;
+  return 1000;
 };

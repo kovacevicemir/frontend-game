@@ -233,4 +233,12 @@ export const itemsDictionary: Record<number, IItem> = {
     healthPoints: 0,
     slot: itemSlotEnum.weapon,
   },
+  30: {
+    id: 30,
+    name: "Ring of darkness",
+    attack: 10,
+    deffense: 10,
+    healthPoints: 25,
+    slot: itemSlotEnum.weapon,
+  },
 };

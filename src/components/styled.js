@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import world1 from "../images/world1.gif";
+import world2 from "../images/world2.gif";
+import world3 from "../images/world3.png";
 import Aic18 from "../images/Aic18.jpg";
 import Window03 from "../images/Window03.png";
 import MainPanel01 from "../images/MainPanel01.png";
@@ -99,21 +101,37 @@ export const MainInfoBarStyle = styled.div`
   background-size: 100% 100%;
   box-shadow: inset 0px 0px 40px 40px rgba(0, 0, 0, 1);
   background-color: black;
+  min-height: 150px;
   @media (max-width: 850px) {
     flex-direction: column;
     gap: 7px;
-    padding: 20px 10px;
+    padding: 30px 10px;
     font-size: 15px;
     box-shadow: inset 0px 0px 15px 15px rgba(0, 0, 0, 1);
   }
 `;
+
+const getWorldBackgroundImage = (k) => {
+  switch (k) {
+    case 1:
+      return world1;
+    case 2:
+      return world2;
+    case 3:
+      return world3;
+
+    default:
+      return world1;
+  }
+};
 
 export const WorldMainStyle = styled.div`
   display: flex;
   gap: 10px;
   justify-content: center;
   flex-direction: column;
-  background-image: url(${world1});
+  background-image: ${(props) =>
+    `url(${getWorldBackgroundImage(props.worldImageIndex)})`};
   background-size: 100% 100%;
   width: 100%;
   height: 100%;
@@ -158,7 +176,7 @@ export const ShopLayout = styled.div`
   align-items: flex-start;
   padding: 100px;
   padding-left: 33%;
-  font-size: 20px;
+  font-size: 18px;
   background-color: navy;
   box-shadow: inset 0px 0px 100px 60px rgba(0, 0, 0, 1);
   @media (max-width: 850px) {
@@ -179,6 +197,7 @@ export const ShopItem = styled.div`
 `;
 
 export const ShopButton = styled.button`
+  margin-left: 5px;
   width: 25px;
   height: 25px;
   background-color: green;
