@@ -28,7 +28,7 @@ export const levelDefinitions = new Map([
   [28, 70898],
   [29, 79232],
   [30, 100000],
-  [31, 999999],
+  [31, 9999999],
 ]);
 
 //generate lvls 10% or multiplier

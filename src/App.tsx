@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Player } from "./models/Player";
 import { getPlayerFromDb } from "./data/getPlayerFromDb";
 import { updatePlayerDb } from "./data/updatePlayerDb";
@@ -11,6 +11,7 @@ import { MainLayout } from "./components/styled";
 import Shop from "./components/Shop";
 import LevelUpNotification from "./components/LevelUpNotification";
 import RenderKillStats from "./components/RenderKillStats";
+import AboutGameInfo from "./components/AboutGameInfo";
 
 const App = () => {
   const [player, setPlayer] = useState<Player | null>(null);
@@ -66,6 +67,8 @@ const App = () => {
       <PlayerInfo player={player} setPlayer={setPlayer} />
       <Inventory player={player} setPlayer={setPlayer} />
       <Shop player={player} setPlayer={setPlayer} />
+      <AboutGameInfo />
+      <div style={{ backgroundColor: "black" }}></div>
     </MainLayout>
   );
 };

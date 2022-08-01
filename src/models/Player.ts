@@ -143,6 +143,10 @@ export class Player implements IPlayer {
     this.increasePlayerLevel();
   }
 
+  decreaseGold(gold: number) {
+    this.gold - gold < 0 ? (this.gold = 0) : (this.gold = this.gold - gold);
+  }
+
   addItemToInventory(battleResults: IBattleResults): void {
     if (battleResults.drops.length === 0 || this.inventoryItems.length >= 21)
       return;

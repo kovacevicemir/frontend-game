@@ -52,8 +52,13 @@ const World = ({ player, setPlayer }: IWorld) => {
   };
 
   const handleSearchMonsters = () => {
+    const cp = copyPlayer(player);
+    cp.computePlayerStats();
+    cp.decreaseGold(settings.exploreCost);
+
     setBattleData(null);
     setMonsters(generateMobsArray(difficulty));
+    setPlayer(cp);
   };
 
   useEffect(() => {
