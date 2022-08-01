@@ -42,6 +42,9 @@ const World = ({ player, setPlayer }: IWorld) => {
     if (mob.battleResults) {
       setBattleData(mob.battleResults);
     }
+    if (mob.battleResults?.win === false) {
+      setMonsters([]);
+    }
   };
 
   const handleFirstMobAttack = () => {
