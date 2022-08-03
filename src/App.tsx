@@ -64,7 +64,15 @@ const App = () => {
         />
       )}
       <World player={player} setPlayer={setPlayer} />
-      <PlayerInfo player={player} setPlayer={setPlayer} />
+      <div
+        style={{
+          backgroundColor: "black",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <PlayerInfo player={player} setPlayer={setPlayer} />
+      </div>
       <Inventory player={player} setPlayer={setPlayer} />
       <Shop player={player} setPlayer={setPlayer} />
       <AboutGameInfo />

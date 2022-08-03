@@ -1,5 +1,10 @@
 import { IItem } from "../interfaces/IItem";
-import { GameButton, InventoryItem, InventoryItemHover } from "./styled";
+import {
+  GameButton,
+  InventoryItem,
+  InventoryItemHover,
+  ItemImage,
+} from "./styled";
 import Button01 from "../images/Button01.png";
 
 interface IRenderInventoryItem {
@@ -39,7 +44,11 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
       onMouseLeave={() => setData(null)}
       onClick={() => setData(item)}
     >
-      [{item.name}]
+      <img
+        alt="inventoryImage"
+        src={item.image}
+        style={{ width: "50px", height: "50px", borderRadius: "5px" }}
+      />
       <InventoryItemHover
         //@ts-ignore
         display={data?.id === item.id ? true : false}

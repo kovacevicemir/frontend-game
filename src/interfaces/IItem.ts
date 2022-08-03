@@ -5,6 +5,7 @@ export interface IItem {
   deffense: number;
   healthPoints: number;
   slot: itemSlotEnum;
+  image?: string;
 }
 
 export enum itemSlotEnum {

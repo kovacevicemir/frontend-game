@@ -1,5 +1,5 @@
 import { IItem, itemSlotEnum } from "../interfaces/IItem";
-import { GameButton, ItemStatsStyle } from "./styled";
+import { GameButton, ItemImage, ItemStatsStyle } from "./styled";
 import Button01 from "../images/Button01.png";
 import { imagePlaceholder } from "../helpers/imagePlaceholder";
 
@@ -28,6 +28,7 @@ const RenderItem = ({ item, slot, handleUnequip }: IRenderItem) => {
       {item && (
         <ItemStatsStyle>
           <div style={{ color: "#ddc08c" }}>[{item.name}]</div>
+          <ItemImage src={item.image} alt="itemImage" />
           <div>{item.attack ? `Attack: ${item.attack}` : null}</div>
           <div>{item.deffense ? `Deffense: ${item.deffense}` : null}</div>
           <div>{item.healthPoints ? `Hp: ${item.healthPoints}` : null}</div>

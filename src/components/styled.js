@@ -89,6 +89,12 @@ export const GameButton = styled.button`
   }
 `;
 
+export const ItemImage = styled.img`
+  width: 33%;
+  min-width: 100px;
+  min-height: 70px;
+`;
+
 export const MainInfoBarStyle = styled.div`
   font-family: monospace;
   display: flex;
@@ -171,7 +177,7 @@ export const MobAttackButton = styled.button`
 `;
 
 export const InventoryItem = styled.div`
-  padding: 5px;
+  padding: 3px;
   width: 50px;
   height: 50px;
   font-size: 12px;
@@ -181,7 +187,7 @@ export const InventoryItem = styled.div`
 `;
 
 export const InventoryItemHover = styled.div`
-  display: ${(props) => (props.display === true ? "block" : "none")};
+  display: ${(props) => props.display === false && "none"};
   position: absolute;
   color: #fff;
   background-image: url(${Button04});
@@ -273,6 +279,7 @@ export const DisplayBattleLayout = styled.div`
   background-image: url(${Window03});
   background-size: 100% 100%;
   width: 50%;
+  max-width: 500px;
   min-height: 200px;
   @media (max-width: 850px) {
     width: 90%;
@@ -305,6 +312,7 @@ export const PlayerInfoLayout = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   min-width: 300px;
+  max-width: 750px;
   background-image: url(${MainPanel01});
   background-size: 100% 100%;
   background-color: black;
@@ -316,6 +324,10 @@ export const PlayerInfoLayout = styled.div`
 `;
 
 export const ItemStatsStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: black;
   opacity: 0.95;
   border: 2px solid #ddc08c;
@@ -323,6 +335,7 @@ export const ItemStatsStyle = styled.div`
   background-size: 100% 100%;
   color: #fff;
   padding: 7px 10px;
+  height: 100%;
   @media (max-width: 850px) {
     opacity: 0.9;
     font-size: 13px;

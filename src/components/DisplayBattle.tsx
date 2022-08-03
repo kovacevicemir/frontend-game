@@ -94,7 +94,11 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               {gold}
               <img src={Coins} alt="gold" width={30} />
               {experience} EXP
-              {drops.length > 0 && ` [${drops[0].name}]`}
+              {drops.length > 0 && (
+                <strong
+                  style={{ color: "orange", marginLeft: "5px" }}
+                >{` [${drops[0].name}]`}</strong>
+              )}
             </>
           )}
         </div>

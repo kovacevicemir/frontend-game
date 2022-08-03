@@ -17,7 +17,7 @@ export const getPlayerFromDb = () => {
       settings.nickname,
       1,
       {
-        weapon: items[1],
+        weapon: null,
         armor: null,
         boots: null,
         belt: null,
