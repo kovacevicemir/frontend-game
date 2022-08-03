@@ -13,7 +13,7 @@ const RenderItem = ({ item, slot, handleUnequip }: IRenderItem) => {
   return (
     <div
       style={{
-        width: "28%",
+        width: "25%",
         backgroundImage: `url(${imagePlaceholder(slot)})`,
         backgroundSize: "100% 100%",
         color: "#fff",
