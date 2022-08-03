@@ -12,5 +12,4 @@ export interface IMonster {
   experience: number;
   gold: number;
   attackMe(player: IPlayer): void;
-  displayBattle(): void;
 }

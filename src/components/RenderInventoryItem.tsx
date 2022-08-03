@@ -1,6 +1,5 @@
 import { IItem } from "../interfaces/IItem";
-import { GameButton } from "./styled";
-import Button04 from "../images/Button04.png";
+import { GameButton, InventoryItem, InventoryItemHover } from "./styled";
 import Button01 from "../images/Button01.png";
 
 interface IRenderInventoryItem {
@@ -18,41 +17,36 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
   handleEquip,
   handleDelete,
 }) => {
-  if (item === undefined || item === null) {
-    return <></>;
-  }
-  return (
-    <div
-      key={item.id}
-      onMouseEnter={() => setData(item)}
-      onMouseLeave={() => setData(null)}
-      style={{
-        padding: "5px",
-        width: "50px",
-        height: "50px",
-        fontSize: "12px",
-        backgroundImage: `url(${Button04})`,
-        backgroundSize: "100% 100%",
-      }}
-    >
-      [{item.name}]
-      <div
-        key={item.id + "@hover"}
-        id="onInventoryItemHover"
-        style={{
-          display: data?.id === item.id ? "" : "none",
-          position: "absolute",
-          color: "#fff",
-          backgroundImage: `url(${Button04})`,
-          backgroundSize: "100% 100%",
-          padding: "12px",
-          fontSize: "14px",
-        }}
-      >
+  const renderItemStats = (item: IItem) => {
+    return (
+      <>
         <div>[{item.name}]</div>
         <div>Attack {item.attack}</div>
         <div>Deffense {item.deffense}</div>
         <div>Hp {item.healthPoints}</div>
+      </>
+    );
+  };
+
+  if (item === undefined || item === null) {
+    return <></>;
+  }
+
+  return (
+    <InventoryItem
+      key={item.id}
+      onMouseEnter={() => setData(item)}
+      onMouseLeave={() => setData(null)}
+      onClick={() => setData(item)}
+    >
+      [{item.name}]
+      <InventoryItemHover
+        //@ts-ignore
+        display={data?.id === item.id ? true : false}
+        key={item.id + "@hover"}
+        id="onInventoryItemHover"
+      >
+        {renderItemStats(item)}
 
         <GameButton
           //@ts-ignore
@@ -68,8 +62,8 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
         >
           delete
         </GameButton>
-      </div>
-    </div>
+      </InventoryItemHover>
+    </InventoryItem>
   );
 };
 

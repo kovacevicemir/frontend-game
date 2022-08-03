@@ -10,6 +10,7 @@ import {
 import Button01 from "../images/Button01.png";
 import Chest2 from "../images/Chest2.png";
 import RenderInventoryItem from "./RenderInventoryItem";
+import { settings } from "../helpers/settings";
 
 interface IInventory {
   player: Player;
@@ -27,19 +28,17 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
   const handleDelete = (item: IItem) => {
     const cp = copyPlayer(player);
     cp.deleteItemFromInventory(item);
-    cp.computePlayerStats();
     setPlayer(cp);
   };
 
   const handleDeleteAll = () => {
     const cp = copyPlayer(player);
     cp.deleteAllFromInventory();
-    cp.computePlayerStats();
     setPlayer(cp);
   };
 
-  return (
-    <InventoryMainLayout>
+  const renderInventoryHeader = () => {
+    return (
       <div
         style={{
           display: "flex",
@@ -50,8 +49,8 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
         }}
       >
         <img src={Chest2} width={50} alt="chest2" />
-        {player.inventoryItems.length === 21 && "Full "}inventory{" "}
-        {player.inventoryItems.length}/21
+        {player.inventoryItems.length === settings.inventoryCapacity && "Full "}
+        inventory {player.inventoryItems.length}/{settings.inventoryCapacity}
         <GameButton
           //@ts-ignore
           image={Button01}
@@ -61,7 +60,12 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
           Clear Inventory
         </GameButton>
       </div>
+    );
+  };
 
+  return (
+    <InventoryMainLayout>
+      {renderInventoryHeader()}
       <InventoryItemsLayout>
         {player.inventoryItems.map((item) => {
           return (

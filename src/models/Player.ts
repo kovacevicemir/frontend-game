@@ -9,11 +9,9 @@ import { IEquipedItems, itemSlotNamesArray } from "../interfaces/IEquipedItems";
 import { IItem } from "../interfaces/IItem";
 import { IPlayer } from "../interfaces/IPlayer";
 import _ from "lodash";
-import {
-  getShopAttributeMultiplier,
-  getShopPrice,
-} from "../helpers/shopAssetsHelper";
+import { getShopAttributeMultiplier } from "../helpers/shopAssetsHelper";
 import { IPlayerStatistics } from "../interfaces/IPlayerStatistics";
+import { settings } from "../helpers/settings";
 
 export class Player implements IPlayer {
   id: number;
@@ -59,6 +57,7 @@ export class Player implements IPlayer {
     this.experienceNeeded = levelDefinitions.get(level + 1) as number;
     this.shopAssets = shopAssets;
     this.playerStatistics = playerStatistics;
+    this.computePlayerStats();
   }
 
   computePlayerStats(): void {
@@ -125,15 +124,16 @@ export class Player implements IPlayer {
 
   increasePlayerStatistics(statisticName: keyof IPlayerStatistics) {
     this.playerStatistics[statisticName]++;
-    this.computePlayerStats();
   }
 
   addShopAsset(shopAssetName: keyof IShopAssets) {
-    if (this.shopAssets[shopAssetName] < 5 && this.gold > getShopPrice() - 1) {
+    if (
+      this.shopAssets[shopAssetName] < 5 &&
+      this.gold > settings.shopAssetPrice - 1
+    ) {
       this.shopAssets[shopAssetName] = this.shopAssets[shopAssetName] + 1;
-      this.gold = this.gold - getShopPrice();
+      this.gold = this.gold - settings.shopAssetPrice;
     }
-    this.computePlayerStats();
   }
 
   addExpAndGold(battleResults: IBattleResults): void {

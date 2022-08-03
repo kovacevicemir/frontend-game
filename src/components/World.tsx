@@ -27,24 +27,20 @@ const World = ({ player, setPlayer }: IWorld) => {
   const [worldImageIndex, setWorldImageIndex] = useState(1);
 
   const handleMobAttack = (mob: Monster) => {
-    //dont switch order!! bug prone
     const cp = copyPlayer(player);
-    cp.computePlayerStats();
-
     mob.attackMe(cp);
-
-    const cm = _.cloneDeep(monsters);
-    cm.pop();
-
-    setFightLogIndex(0);
     setPlayer(cp);
-    setMonsters(cm);
-    if (mob.battleResults) {
-      setBattleData(mob.battleResults);
-    }
+
+    mob.battleResults !== undefined && setBattleData(mob.battleResults);
+
     if (mob.battleResults?.win === false) {
       setMonsters([]);
+    } else {
+      monsters.pop();
+      setMonsters(monsters);
     }
+
+    setFightLogIndex(0);
   };
 
   const handleFirstMobAttack = () => {
@@ -53,29 +49,11 @@ const World = ({ player, setPlayer }: IWorld) => {
 
   const handleSearchMonsters = () => {
     const cp = copyPlayer(player);
-    cp.computePlayerStats();
     cp.decreaseGold(settings.exploreCost);
-
+    setPlayer(cp);
     setBattleData(null);
     setMonsters(generateMobsArray(difficulty));
-    setPlayer(cp);
   };
-
-  useEffect(() => {
-    const handleKeyDown = (event: any) => {
-      switch (event.keyCode) {
-        case 65:
-          handleFirstMobAttack();
-          break;
-        case 69:
-          handleSearchMonsters();
-          break;
-        default:
-          break;
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-  }, []);
 
   useEffect(() => {
     if (battleData) {

@@ -50,8 +50,4 @@ export class Monster implements IMonster {
 
     this.battleResults = battleResults;
   }
-
-  displayBattle() {
-    return;
-  }
 }

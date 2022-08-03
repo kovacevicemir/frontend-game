@@ -3,7 +3,7 @@ import { IBattleResults } from "../interfaces/IBattleResults";
 import { IItem } from "../interfaces/IItem";
 import { Monster } from "../models/Monster";
 import { Player } from "../models/Player";
-import { dropChances } from "./dropChanges";
+import { dropChances } from "./dropChances";
 import { isDrop } from "./isDrop";
 
 export const attackMonster = (

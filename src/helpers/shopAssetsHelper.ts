@@ -12,7 +12,3 @@ export const getShopAttributeMultiplier = (shopAssetName: string) => {
       return 0;
   }
 };
-
-export const getShopPrice = () => {
-  return 1000;
-};

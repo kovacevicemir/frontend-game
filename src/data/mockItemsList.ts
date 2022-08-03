@@ -239,6 +239,6 @@ export const itemsDictionary: Record<number, IItem> = {
     attack: 10,
     deffense: 10,
     healthPoints: 25,
-    slot: itemSlotEnum.weapon,
+    slot: itemSlotEnum.ring,
   },
 };

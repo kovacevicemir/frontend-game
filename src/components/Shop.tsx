@@ -4,10 +4,7 @@ import { CenterAlign, ShopButton, ShopItem, ShopLayout } from "./styled";
 import Coins from "../images/Coins.png";
 import { copyPlayer } from "../helpers/copyPlayer";
 import { IShopAssets } from "../interfaces/IShopAssets";
-import {
-  getShopAttributeMultiplier,
-  getShopPrice,
-} from "../helpers/shopAssetsHelper";
+import { getShopAttributeMultiplier } from "../helpers/shopAssetsHelper";
 import { settings } from "../helpers/settings";
 
 interface IShop {
@@ -22,65 +19,38 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
     setPlayer(cp);
   };
 
+  const renderShopItem = (shopAssetName: keyof IShopAssets, title: string) => {
+    return (
+      <ShopItem>
+        {shopAssetName === "attackSpeed"
+          ? "Attack speed +1 "
+          : `${title} +${getShopAttributeMultiplier(shopAssetName)}`}
+
+        <div>
+          {player?.shopAssets?.[shopAssetName]}/{settings.maxShopAssets}
+          <ShopButton
+            onClick={() => {
+              handleBuyAsset(shopAssetName);
+            }}
+          >
+            +
+          </ShopButton>
+        </div>
+      </ShopItem>
+    );
+  };
+
   return (
     <ShopLayout>
       <ShopItem>
         <CenterAlign style={{ color: "#7d7d7d" }}>
-          <img src={Coins} alt="coins" width={30} /> {getShopPrice()} each
+          <img src={Coins} alt="cc" width={30} /> {settings.shopAssetPrice} each
         </CenterAlign>
       </ShopItem>
-      <ShopItem>
-        Attack speed +1
-        <div>
-          {player?.shopAssets?.attackSpeed}/{settings.maxShopAssets}
-          <ShopButton
-            onClick={() => {
-              handleBuyAsset("attackSpeed");
-            }}
-          >
-            +
-          </ShopButton>
-        </div>
-      </ShopItem>
-      <ShopItem>
-        Attack +{getShopAttributeMultiplier("attack")}
-        <div>
-          {player?.shopAssets?.attack}/{settings.maxShopAssets}
-          <ShopButton
-            onClick={() => {
-              handleBuyAsset("attack");
-            }}
-          >
-            +
-          </ShopButton>
-        </div>
-      </ShopItem>
-      <ShopItem>
-        Deffense +{getShopAttributeMultiplier("deffense")}
-        <div>
-          {player?.shopAssets?.deffense}/{settings.maxShopAssets}
-          <ShopButton
-            onClick={() => {
-              handleBuyAsset("deffense");
-            }}
-          >
-            +
-          </ShopButton>
-        </div>
-      </ShopItem>
-      <ShopItem>
-        Health +{getShopAttributeMultiplier("healthPoints")}
-        <div>
-          {player?.shopAssets?.healthPoints}/{settings.maxShopAssets}
-          <ShopButton
-            onClick={() => {
-              handleBuyAsset("healthPoints");
-            }}
-          >
-            +
-          </ShopButton>
-        </div>
-      </ShopItem>
+      {renderShopItem("attackSpeed", "Attack speed")}
+      {renderShopItem("attack", "Attack")}
+      {renderShopItem("deffense", "Deffense")}
+      {renderShopItem("healthPoints", "Health Points")}
     </ShopLayout>
   );
 };

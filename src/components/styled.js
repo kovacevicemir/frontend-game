@@ -6,6 +6,7 @@ import Aic18 from "../images/Aic18.jpg";
 import Window03 from "../images/Window03.png";
 import MainPanel01 from "../images/MainPanel01.png";
 import FuturisticBg from "../images/FuturisticBg.png";
+import Button04 from "../images/Button04.png";
 
 export const NotificationLayout = styled.div`
   position: fixed;
@@ -169,6 +170,26 @@ export const MobAttackButton = styled.button`
   }
 `;
 
+export const InventoryItem = styled.div`
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+  font-size: 12px;
+  background-image: url(${Button04});
+  background-size: 100% 100%;
+  cursor: pointer;
+`;
+
+export const InventoryItemHover = styled.div`
+  display: ${(props) => (props.display === true ? "block" : "none")};
+  position: absolute;
+  color: #fff;
+  background-image: url(${Button04});
+  background-size: 100% 100%;
+  padding: 12px;
+  font-size: 14px;
+`;
+
 export const ShopLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -177,8 +198,8 @@ export const ShopLayout = styled.div`
   padding: 100px;
   padding-left: 33%;
   font-size: 18px;
-  background-color: navy;
-  box-shadow: inset 0px 0px 100px 60px rgba(0, 0, 0, 1);
+  background-color: #05053d;
+  box-shadow: inset 0px 0px 150px 60px rgba(0, 0, 0, 1);
   @media (max-width: 850px) {
     padding-left: 20%;
     font-size: 17px;

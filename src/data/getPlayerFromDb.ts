@@ -1,9 +1,10 @@
+import { settings } from "../helpers/settings";
 import { Player } from "../models/Player";
 import { get, set } from "./localStorage";
 import { itemsDictionary as items } from "./mockItemsList";
 
 export const getPlayerFromDb = () => {
-  const playerObj = get("Player");
+  const playerObj = get(settings.nickname);
   if (typeof playerObj === typeof Player && playerObj !== null) {
     playerObj.computePlayerStats();
   }
@@ -13,7 +14,7 @@ export const getPlayerFromDb = () => {
   } else {
     const newPlayer = new Player(
       1,
-      "Player",
+      settings.nickname,
       1,
       {
         weapon: items[1],
@@ -39,8 +40,8 @@ export const getPlayerFromDb = () => {
         playersKilled: 0,
       }
     );
-    newPlayer.computePlayerStats();
-    set("Player", newPlayer);
+
+    set(settings.nickname, newPlayer);
     return newPlayer;
   }
 };
