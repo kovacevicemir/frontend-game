@@ -61,6 +61,14 @@ export const CenterAlign = styled.div`
   align-items: center;
 `;
 
+export const MainFrame = styled.div`
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const MainLayout = styled.div`
   display: grid;
   height: 100vh;
@@ -93,6 +101,8 @@ export const ItemImage = styled.img`
   width: 33%;
   min-width: 100px;
   min-height: 70px;
+  border-radius: 5px;
+  margin: 2px;
 `;
 
 export const MainInfoBarStyle = styled.div`
@@ -111,10 +121,12 @@ export const MainInfoBarStyle = styled.div`
   min-height: 150px;
   @media (max-width: 850px) {
     flex-direction: column;
-    gap: 7px;
-    padding: 30px 10px;
+    gap: 6px;
+    padding: 40px 20px;
     font-size: 15px;
     box-shadow: inset 0px 0px 15px 15px rgba(0, 0, 0, 1);
+    align-items: flex-start;
+    padding-left: 25%;
   }
 `;
 
@@ -204,8 +216,8 @@ export const ShopLayout = styled.div`
   padding: 100px;
   padding-left: 33%;
   font-size: 18px;
-  background-color: #05053d;
-  box-shadow: inset 0px 0px 150px 60px rgba(0, 0, 0, 1);
+  background-color: #0f0f1f;
+  box-shadow: inset 0px 0px 60px 60px rgba(0, 0, 0, 1);
   @media (max-width: 850px) {
     padding-left: 20%;
     font-size: 17px;
@@ -216,7 +228,7 @@ export const ShopItem = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 220px;
+  width: 230px;
   color: #fff;
   @media (max-width: 850px) {
     margin-bottom: 5px;
@@ -267,7 +279,8 @@ export const InventoryItemsLayout = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
+  max-width: 500px;
 `;
 
 export const DisplayBattleLayout = styled.div`
@@ -310,16 +323,17 @@ export const PlayerInfoLayout = styled.div`
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
   min-width: 300px;
-  max-width: 750px;
-  background-image: url(${MainPanel01});
+  max-width: 650px;
   background-size: 100% 100%;
-  background-color: black;
-  padding: 5%;
+  border-radius: 5px;
+  padding: 5% 3%;
+  background-color: rgba(15, 15, 30, 1);
+  box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 1);
   @media (max-width: 850px) {
     gap: 7px;
-    padding: 6% 3%;
+    padding: 6% 2%;
   }
 `;
 
@@ -329,15 +343,17 @@ export const ItemStatsStyle = styled.div`
   justify-content: center;
   align-items: center;
   background-color: black;
-  opacity: 0.95;
+  opacity: 0.98;
   border: 2px solid #ddc08c;
   border-radius: 5px;
   background-size: 100% 100%;
   color: #fff;
-  padding: 7px 10px;
   height: 100%;
+  &:hover {
+    cursor: pointer;
+  }
   @media (max-width: 850px) {
-    opacity: 0.9;
+    opacity: 0.98;
     font-size: 13px;
   }
 `;

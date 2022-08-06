@@ -44,8 +44,14 @@ const renderDropsPerSector = () => {
           marginBottom: "10px",
         }}
       >
-        <strong>Sector {key}</strong>
-        <ol>
+        Sector {key}
+        <ol
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+        >
           {monster.droppableItems.map((i, index) => (
             <li key={i.name}>{i.name}</li>
           ))}
@@ -86,15 +92,13 @@ const renderCommingSoon = () => {
     >
       <h5>Comming soon</h5>
       <li>More content</li>
-      <li>Account login</li>
       <li>Top 100 players</li>
       <li>Attack other player</li>
       <li>Player kills stats</li>
       <li>Pimp item</li>
-      <li>Item images</li>
       <li>UI improvement</li>
-      <li>Block %</li>
-      <li>Critical hit %</li>
+      <li>Block % items/battle</li>
+      <li>Critical hit % items/battle</li>
       <li>Mana system</li>
     </div>
   );
@@ -102,7 +106,7 @@ const renderCommingSoon = () => {
 
 const AboutGameInfo = () => {
   return (
-    <ShopLayout style={{ color: "#f3f1f1" }}>
+    <ShopLayout style={{ color: "#f3f1f1", fontSize: "15px" }}>
       <h3>Game info v2.0</h3>
       {renderHowToPlay()}
       <h5>Experience needed per level</h5>

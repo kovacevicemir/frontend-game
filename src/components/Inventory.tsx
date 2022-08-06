@@ -3,6 +3,7 @@ import { copyPlayer } from "../helpers/copyPlayer";
 import { IItem } from "../interfaces/IItem";
 import { Player } from "../models/Player";
 import {
+  CenterAlign,
   GameButton,
   InventoryItemsLayout,
   InventoryMainLayout,
@@ -49,8 +50,17 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
         }}
       >
         <img src={Chest2} width={50} alt="chest2" />
-        {player.inventoryItems.length === settings.inventoryCapacity && "Full "}
-        inventory {player.inventoryItems.length}/{settings.inventoryCapacity}
+        <div style={{ fontSize: "15px" }}>
+          {player.inventoryItems.length === settings.inventoryCapacity ? (
+            <strong style={{ color: "red" }}>Full inventory</strong>
+          ) : (
+            <div>
+              <strong>inventory </strong>
+              {player.inventoryItems.length}/{settings.inventoryCapacity}
+            </div>
+          )}
+        </div>
+
         <GameButton
           //@ts-ignore
           image={Button01}
@@ -66,20 +76,22 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
   return (
     <InventoryMainLayout>
       {renderInventoryHeader()}
-      <InventoryItemsLayout>
-        {player.inventoryItems.map((item) => {
-          return (
-            <RenderInventoryItem
-              key={item.id}
-              item={item}
-              data={data}
-              handleEquip={handleEquip}
-              handleDelete={handleDelete}
-              setData={setData}
-            />
-          );
-        })}
-      </InventoryItemsLayout>
+      <CenterAlign>
+        <InventoryItemsLayout>
+          {player.inventoryItems.map((item) => {
+            return (
+              <RenderInventoryItem
+                key={item.id}
+                item={item}
+                data={data}
+                handleEquip={handleEquip}
+                handleDelete={handleDelete}
+                setData={setData}
+              />
+            );
+          })}
+        </InventoryItemsLayout>
+      </CenterAlign>
     </InventoryMainLayout>
   );
 };

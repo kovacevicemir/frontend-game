@@ -38,7 +38,7 @@ const PlayerInfo: React.FC<IPlayerInfo> = ({
 
   return (
     <PlayerInfoLayout>
-      <RenderItem item={null} slot={null} handleUnequip={handleUnequip} />
+      <div style={{ width: "30%" }}></div>
       {renderAllItems()}
     </PlayerInfoLayout>
   );

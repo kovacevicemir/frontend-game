@@ -6,6 +6,7 @@ import { copyPlayer } from "../helpers/copyPlayer";
 import { IShopAssets } from "../interfaces/IShopAssets";
 import { getShopAttributeMultiplier } from "../helpers/shopAssetsHelper";
 import { settings } from "../helpers/settings";
+import { iconPicker } from "../helpers/iconPicker";
 
 interface IShop {
   player: Player;
@@ -22,9 +23,18 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
   const renderShopItem = (shopAssetName: keyof IShopAssets, title: string) => {
     return (
       <ShopItem>
-        {shopAssetName === "attackSpeed"
-          ? "Attack speed +1 "
-          : `${title} +${getShopAttributeMultiplier(shopAssetName)}`}
+        {shopAssetName === "attackSpeed" ? (
+          "Attack speed +1 "
+        ) : (
+          <CenterAlign>
+            {title} +{getShopAttributeMultiplier(shopAssetName)}
+            <img
+              style={{ marginLeft: "2px" }}
+              src={iconPicker(shopAssetName)}
+              alt="attackIcon"
+            />
+          </CenterAlign>
+        )}
 
         <div>
           {player?.shopAssets?.[shopAssetName]}/{settings.maxShopAssets}

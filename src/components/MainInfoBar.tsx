@@ -1,7 +1,10 @@
 import React from "react";
 import bag from "../images/bag.png";
 import { Player } from "../models/Player";
-import { GoldDisplayStyle, MainInfoBarStyle } from "./styled";
+import { CenterAlign, GoldDisplayStyle, MainInfoBarStyle } from "./styled";
+import AttackIcon16px from "../images/AttackIcon16px.png";
+import Shield16px from "../images/Shield16px.png";
+import Health16px from "../images/Health16px.png";
 
 interface IMainInfoBar {
   player: Player;
@@ -20,15 +23,20 @@ const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
   } = player;
   return (
     <MainInfoBarStyle>
-      <div>
-        {nickname} [{level}]
-      </div>
-      <div>Attack [{totalAttack}]</div>
-      <div>Deffense [{totalDeffense}]</div>
-      <div>Hp [{totalHealthPoints}]</div>
-      <div>
+      <strong style={{ color: "orange" }}>{nickname}</strong>
+      <CenterAlign>Level [{level}]</CenterAlign>
+      <CenterAlign>
+        Attack [{totalAttack}]<img src={AttackIcon16px} alt="attackIcon" />
+      </CenterAlign>
+      <CenterAlign>
+        Deffense [{totalDeffense}]<img src={Shield16px} alt="deffkIcon" />
+      </CenterAlign>
+      <CenterAlign>
+        Hp [{totalHealthPoints}]<img src={Health16px} alt="hpIcon" />
+      </CenterAlign>
+      <CenterAlign>
         Experience [{experience}/{experienceNeeded}]
-      </div>
+      </CenterAlign>
       <GoldDisplayStyle>
         <img src={bag} alt="gold" width={40} />
         {gold}
