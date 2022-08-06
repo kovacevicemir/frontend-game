@@ -106,7 +106,14 @@ const renderCommingSoon = () => {
 
 const AboutGameInfo = () => {
   return (
-    <ShopLayout style={{ color: "#f3f1f1", fontSize: "15px" }}>
+    <ShopLayout
+      style={{
+        paddingLeft: "5%",
+        color: "#f3f1f1",
+        fontSize: "15px",
+        width: "350px",
+      }}
+    >
       <h3>Game info v2.0</h3>
       {renderHowToPlay()}
       <h5>Experience needed per level</h5>

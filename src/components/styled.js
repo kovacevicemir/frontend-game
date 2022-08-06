@@ -64,7 +64,7 @@ export const CenterAlign = styled.div`
 export const MainFrame = styled.div`
   background-color: black;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
