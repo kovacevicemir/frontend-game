@@ -11,6 +11,7 @@ import RenderKillStats from "./components/RenderKillStats";
 import AboutGameInfo from "./components/AboutGameInfo";
 import SignUpLogin from "./components/SignUpLogin";
 import { update } from "./data/Api";
+import { random } from "./helpers/mathHelpers";
 
 const App = () => {
   const [player, setPlayer] = useState<Player | null>(null);
@@ -26,7 +27,10 @@ const App = () => {
 
   useEffect(() => {
     if (player) {
-      update(player);
+      //TODO - not update player all the time
+      if (random(1, 4) === 1) {
+        update(player);
+      }
       setPlayer(player);
     }
   }, [

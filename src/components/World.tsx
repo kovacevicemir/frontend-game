@@ -26,8 +26,6 @@ const World = ({ player, setPlayer }: IWorld) => {
   const [fightLogIndex, setFightLogIndex] = useState(0);
   const [worldImageIndex, setWorldImageIndex] = useState(1);
 
-  console.log(battleData);
-
   const handleMobAttack = (mob: Monster) => {
     const cp = copyPlayer(player);
     mob.attackMe(cp);
