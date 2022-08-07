@@ -183,7 +183,7 @@ export const WorldMiddleLayout = styled.div`
   gap: 5;
   justify-content: center;
   align-items: center;
-  min-height: 275px;
+  min-height: 400px;
 `;
 
 export const MobAttackButton = styled.button`

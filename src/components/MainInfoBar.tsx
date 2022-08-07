@@ -28,6 +28,9 @@ const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
       </CenterAlign>
       <CenterAlign>Level [{level}]</CenterAlign>
       <CenterAlign>
+        Experience [{experience}/{experienceNeeded}]
+      </CenterAlign>
+      <CenterAlign>
         Attack [{totalAttack}]<img src={AttackIcon16px} alt="attackIcon" />
       </CenterAlign>
       <CenterAlign>
@@ -36,9 +39,7 @@ const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
       <CenterAlign>
         Hp [{totalHealthPoints}]<img src={Health16px} alt="hpIcon" />
       </CenterAlign>
-      <CenterAlign>
-        Experience [{experience}/{experienceNeeded}]
-      </CenterAlign>
+
       <CenterAlign>
         Gold [{gold}]<img src={Coins} alt="goldIcon" width={25} />
       </CenterAlign>

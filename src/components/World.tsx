@@ -121,7 +121,13 @@ const World = ({ player, setPlayer }: IWorld) => {
           onClick={() => handleFirstMobAttack()}
           letterSpacing={"4px"}
           disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
-          style={{ padding: "7px" }}
+          style={{
+            padding: "7px",
+            color:
+              battleData?.playerAttacks[fightLogIndex] !== undefined
+                ? "orange"
+                : "#fff",
+          }}
         >
           Attack
         </GameButton>
