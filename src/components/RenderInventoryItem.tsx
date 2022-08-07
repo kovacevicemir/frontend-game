@@ -1,6 +1,14 @@
 import { IItem } from "../interfaces/IItem";
-import { GameButton, InventoryItem, InventoryItemHover } from "./styled";
+import {
+  CenterAlign,
+  GameButton,
+  InventoryItem,
+  InventoryItemHover,
+} from "./styled";
 import Button01 from "../images/Button01.png";
+import Coins from "../images/Coins.png";
+import { settings } from "../helpers/settings";
+import RenderUpgradeImages from "./RenderUpgradeImages";
 
 interface IRenderInventoryItem {
   item: IItem;
@@ -8,6 +16,7 @@ interface IRenderInventoryItem {
   setData: (item: IItem | null) => void;
   handleEquip: (item: IItem) => void;
   handleDelete: (item: IItem) => void;
+  handlePimp: (item: IItem) => void;
 }
 
 const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
@@ -16,6 +25,7 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
   setData,
   handleEquip,
   handleDelete,
+  handlePimp,
 }) => {
   const renderItemStats = (item: IItem) => {
     return (
@@ -24,6 +34,7 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
         <div>Attack {item.attack}</div>
         <div>Deffense {item.deffense}</div>
         <div>Hp {item.healthPoints}</div>
+        {item.upgrade && <RenderUpgradeImages item={item} />}
       </>
     );
   };
@@ -65,6 +76,18 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
           onClick={() => handleDelete(item)}
         >
           delete
+        </GameButton>
+        <br />
+        <GameButton
+          //@ts-ignore
+          image={Button01}
+          onClick={() => handlePimp(item)}
+          style={{ marginTop: "10px", marginBottom: "5px" }}
+        >
+          <CenterAlign>
+            pimp +{settings.itemPimpCost}
+            <img src={Coins} alt="coins" width={20} />
+          </CenterAlign>
         </GameButton>
       </InventoryItemHover>
     </InventoryItem>

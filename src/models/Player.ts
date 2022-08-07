@@ -171,6 +171,41 @@ export class Player implements IPlayer {
     this.inventoryItems = [];
   }
 
+  pimpItem(item: IItem): void {
+    if (item.upgrade !== undefined) {
+      if (item.upgrade > 2) return;
+    }
+
+    if (this.gold < settings.itemPimpCost) {
+      return;
+    }
+
+    const foundIndex = this.inventoryItems.findIndex((x) => x.id === item.id);
+    if (foundIndex) {
+      if (this.inventoryItems[foundIndex].attack !== 0) {
+        this.inventoryItems[foundIndex].attack += Math.round(
+          this.inventoryItems[foundIndex].attack * 0.333
+        );
+      }
+      if (this.inventoryItems[foundIndex].deffense !== 0) {
+        this.inventoryItems[foundIndex].deffense += Math.round(
+          this.inventoryItems[foundIndex].deffense * 0.333
+        );
+      }
+      if (this.inventoryItems[foundIndex].healthPoints !== 0) {
+        this.inventoryItems[foundIndex].healthPoints += Math.round(
+          this.inventoryItems[foundIndex].healthPoints * 0.333
+        );
+      }
+
+      this.inventoryItems[foundIndex].upgrade = item.upgrade
+        ? item.upgrade + 1
+        : 1;
+
+      this.decreaseGold(settings.itemPimpCost);
+    }
+  }
+
   equipItem(item: IItem): void {
     const itemSlot: string = itemSlotNamesArray[item.slot];
 

@@ -1,6 +1,7 @@
 import { IItem, itemSlotEnum } from "../interfaces/IItem";
 import { ItemImage, ItemStatsStyle } from "./styled";
 import { imagePlaceholder } from "../helpers/imagePlaceholder";
+import RenderUpgradeImages from "./RenderUpgradeImages";
 
 interface IRenderItem {
   item: IItem | null;
@@ -44,6 +45,7 @@ const RenderItem = ({ item, slot, handleUnequip }: IRenderItem) => {
           <div style={{ color: "#ddc08c" }}>[{item.name}]</div>
           <ItemImage src={item.image} alt="itemImage" />
           <div>
+            <RenderUpgradeImages item={item} />
             <div>{item.attack ? `Attack ${item.attack}` : null}</div>
             <div>{item.deffense ? `Deffense ${item.deffense}` : null}</div>
             <div>{item.healthPoints ? `Hp ${item.healthPoints}` : null}</div>

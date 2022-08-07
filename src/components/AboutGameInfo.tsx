@@ -6,7 +6,6 @@ import {
   levelStatsDefinitions,
 } from "../helpers/levelDefinitions";
 import { Monster } from "../models/Monster";
-import { ShopLayout } from "./styled";
 
 const renderLevelDefs = () => {
   return Array.from(levelDefinitions).map(([key, value]) => {
@@ -72,11 +71,12 @@ const renderHowToPlay = () => {
     >
       <h5>How to play</h5>
       <li>Attack monsters</li>
-      <li>Explore cost 1 gold </li>
+      <li>Explore</li>
       <li>Equip items</li>
       <li>Level up</li>
       <li>Move to next sector</li>
       <li>Buy items from shop </li>
+      <li>Pimp items [3x] 33% stats increase</li>
     </div>
   );
 };
@@ -95,7 +95,6 @@ const renderCommingSoon = () => {
       <li>Top 100 players</li>
       <li>Attack other player</li>
       <li>Player kills stats</li>
-      <li>Pimp item</li>
       <li>UI improvement</li>
       <li>Block % items/battle</li>
       <li>Critical hit % items/battle</li>

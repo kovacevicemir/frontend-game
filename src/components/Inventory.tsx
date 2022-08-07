@@ -31,6 +31,11 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
     cp.deleteItemFromInventory(item);
     setPlayer(cp);
   };
+  const handlePimp = (item: IItem) => {
+    const cp = copyPlayer(player);
+    cp.pimpItem(item);
+    setPlayer(cp);
+  };
 
   const handleDeleteAll = () => {
     const cp = copyPlayer(player);
@@ -86,6 +91,7 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
                 data={data}
                 handleEquip={handleEquip}
                 handleDelete={handleDelete}
+                handlePimp={handlePimp}
                 setData={setData}
               />
             );

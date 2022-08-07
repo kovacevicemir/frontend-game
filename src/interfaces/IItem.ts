@@ -6,6 +6,7 @@ export interface IItem {
   healthPoints: number;
   slot: itemSlotEnum;
   image?: string;
+  upgrade?: number;
 }
 
 export enum itemSlotEnum {
