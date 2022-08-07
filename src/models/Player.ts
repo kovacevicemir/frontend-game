@@ -181,7 +181,7 @@ export class Player implements IPlayer {
     }
 
     const foundIndex = this.inventoryItems.findIndex((x) => x.id === item.id);
-    if (foundIndex) {
+    if (foundIndex || foundIndex === 0) {
       if (this.inventoryItems[foundIndex].attack !== 0) {
         this.inventoryItems[foundIndex].attack += Math.round(
           this.inventoryItems[foundIndex].attack * 0.333

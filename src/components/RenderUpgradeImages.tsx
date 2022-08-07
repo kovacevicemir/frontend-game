@@ -12,7 +12,9 @@ const RenderUpgradeImages: React.FC<IRenderUpgradeItems> = ({
     if (item.upgrade)
       return [...Array(item.upgrade + 1)].map((e, i) => {
         if (i !== 0) {
-          return <img src={imagePlaceholder(i)} width={20} alt="upgrades" />;
+          return (
+            <img src={imagePlaceholder(i)} width={20} alt="upgrades" key={i} />
+          );
         } else {
           <></>;
         }
