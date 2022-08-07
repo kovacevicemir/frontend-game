@@ -4,7 +4,6 @@ import world2 from "../images/world2.gif";
 import world3 from "../images/world3.png";
 import Aic18 from "../images/Aic18.jpg";
 import Window03 from "../images/Window03.png";
-import MainPanel01 from "../images/MainPanel01.png";
 import FuturisticBg from "../images/FuturisticBg.png";
 import Button04 from "../images/Button04.png";
 
@@ -31,16 +30,21 @@ export const NotificationPanel = styled.div`
 `;
 
 export const HorizontalScrollbar = styled.div`
+  box-shadow: inset 0px 0px 10px 10px rgba(0, 0, 0, 0.3);
+  padding: 3px;
   display: inline-block;
   white-space: nowrap;
   overflow: auto;
   width: 350px;
   margin: 0px 20px;
+  border-radius: 5px;
   &::-webkit-scrollbar {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
     height: 20px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.3); /* color of the scroll thumb */
+    background-color: rgba(0, 0, 0, 0.5); /* color of the scroll thumb */
     border-radius: 10px; /* roundness of the scroll thumb */
   }
   &:hover {
@@ -48,8 +52,14 @@ export const HorizontalScrollbar = styled.div`
   }
   @media (max-width: 850px) {
     &::-webkit-scrollbar {
-      height: 0px;
+      background-color: rgba(0, 0, 0, 0.75);
+      height: 4px;
       direction: ltr;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #7c1e1e; /* color of the scroll thumb */
+      height: 2px;
+      border-radius: 5px; /* roundness of the scroll thumb */
     }
   }
 `;
@@ -101,8 +111,13 @@ export const ItemImage = styled.img`
   width: 33%;
   min-width: 100px;
   min-height: 70px;
+  max-height: 100px;
   border-radius: 5px;
   margin: 2px;
+  @media (max-width: 850px) {
+    min-width: 80px;
+    max-height: 70px;
+  }
 `;
 
 export const MainInfoBarStyle = styled.div`
@@ -221,6 +236,8 @@ export const ShopLayout = styled.div`
   @media (max-width: 850px) {
     padding-left: 20%;
     font-size: 17px;
+    padding-top: 20px;
+    padding-bottom: 50px;
   }
 `;
 
@@ -334,19 +351,21 @@ export const PlayerInfoLayout = styled.div`
   @media (max-width: 850px) {
     gap: 7px;
     padding: 6% 2%;
+    margin-top: 20px;
   }
 `;
 
 export const ItemStatsStyle = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background-color: black;
   opacity: 0.98;
   border: 2px solid #ddc08c;
   border-radius: 5px;
   background-size: 100% 100%;
+  min-width: 170px;
   color: #fff;
   height: 100%;
   &:hover {
@@ -355,6 +374,7 @@ export const ItemStatsStyle = styled.div`
   @media (max-width: 850px) {
     opacity: 0.98;
     font-size: 13px;
+    min-width: 110px;
   }
 `;
 

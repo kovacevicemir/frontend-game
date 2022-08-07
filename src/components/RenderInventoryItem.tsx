@@ -1,10 +1,5 @@
 import { IItem } from "../interfaces/IItem";
-import {
-  GameButton,
-  InventoryItem,
-  InventoryItemHover,
-  ItemImage,
-} from "./styled";
+import { GameButton, InventoryItem, InventoryItemHover } from "./styled";
 import Button01 from "../images/Button01.png";
 
 interface IRenderInventoryItem {

@@ -2,17 +2,21 @@ import axios from "axios";
 import { Player } from "../models/Player";
 
 export const signUp = async (nickname: string, password: string) => {
-  return await axios.post("http://localhost:5010/signup", {
+  return await axios.post("http://3.26.49.239:5000/signup", {
     nickname,
     password,
   });
 };
 export const logIn = async (nickname: string, password: string) => {
-  return await axios.post("http://localhost:5010/login", {
-    nickname,
-    password,
+  return await axios({
+    url: "http://3.26.49.239:5000/login",
+    method: "post",
+    data: {
+      nickname,
+      password,
+    },
   });
 };
 export const update = async (player: Player) => {
-  return await axios.put("http://localhost:5010/update", player);
+  return await axios.put("http://3.26.49.239:5000/update", player);
 };

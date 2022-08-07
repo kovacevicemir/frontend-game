@@ -1,5 +1,5 @@
 import React from "react";
-import bag from "../images/bag.png";
+import Coins from "../images/Coins.png";
 import { Player } from "../models/Player";
 import { CenterAlign, GoldDisplayStyle, MainInfoBarStyle } from "./styled";
 import AttackIcon16px from "../images/AttackIcon16px.png";
@@ -23,7 +23,9 @@ const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
   } = player;
   return (
     <MainInfoBarStyle>
-      <strong style={{ color: "orange" }}>{nickname}</strong>
+      <CenterAlign>
+        <strong style={{ color: "#fff" }}>{nickname}</strong>
+      </CenterAlign>
       <CenterAlign>Level [{level}]</CenterAlign>
       <CenterAlign>
         Attack [{totalAttack}]<img src={AttackIcon16px} alt="attackIcon" />
@@ -37,10 +39,9 @@ const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
       <CenterAlign>
         Experience [{experience}/{experienceNeeded}]
       </CenterAlign>
-      <GoldDisplayStyle>
-        <img src={bag} alt="gold" width={40} />
-        {gold}
-      </GoldDisplayStyle>
+      <CenterAlign>
+        Gold [{gold}]<img src={Coins} alt="goldIcon" width={25} />
+      </CenterAlign>
     </MainInfoBarStyle>
   );
 };

@@ -43,9 +43,11 @@ const RenderItem = ({ item, slot, handleUnequip }: IRenderItem) => {
         >
           <div style={{ color: "#ddc08c" }}>[{item.name}]</div>
           <ItemImage src={item.image} alt="itemImage" />
-          <div>{item.attack ? `Attack ${item.attack}` : null}</div>
-          <div>{item.deffense ? `Deffense ${item.deffense}` : null}</div>
-          <div>{item.healthPoints ? `Hp ${item.healthPoints}` : null}</div>
+          <div>
+            <div>{item.attack ? `Attack ${item.attack}` : null}</div>
+            <div>{item.deffense ? `Deffense ${item.deffense}` : null}</div>
+            <div>{item.healthPoints ? `Hp ${item.healthPoints}` : null}</div>
+          </div>
         </ItemStatsStyle>
       )}
     </div>

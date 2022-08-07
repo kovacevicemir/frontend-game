@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import _ from "lodash";
+import _, { without } from "lodash";
 import { copyPlayer } from "../helpers/copyPlayer";
 import { Monster } from "../models/Monster";
 import { Player } from "../models/Player";
@@ -25,6 +25,8 @@ const World = ({ player, setPlayer }: IWorld) => {
   const [battleData, setBattleData] = useState<IBattleResults | null>(null);
   const [fightLogIndex, setFightLogIndex] = useState(0);
   const [worldImageIndex, setWorldImageIndex] = useState(1);
+
+  console.log(battleData);
 
   const handleMobAttack = (mob: Monster) => {
     const cp = copyPlayer(player);
@@ -111,6 +113,7 @@ const World = ({ player, setPlayer }: IWorld) => {
           onClick={() => handleSearchMonsters()}
           letterSpacing={"2px"}
           disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
+          style={{ padding: "7px" }}
         >
           Explore
         </GameButton>
@@ -118,8 +121,9 @@ const World = ({ player, setPlayer }: IWorld) => {
           // @ts-ignore
           image={Button01}
           onClick={() => handleFirstMobAttack()}
-          letterSpacing={"3px"}
+          letterSpacing={"4px"}
           disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
+          style={{ padding: "7px" }}
         >
           Attack
         </GameButton>

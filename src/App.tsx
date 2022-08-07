@@ -66,8 +66,9 @@ const App = () => {
           </div>
           <Inventory player={player} setPlayer={setPlayer} />
           <Shop player={player} setPlayer={setPlayer} />
+          <AboutGameInfo />
+          <div style={{ backgroundColor: "black" }}></div>
         </MainLayout>
-        <AboutGameInfo />
       </MainFrame>
     );
   }

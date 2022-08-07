@@ -24,12 +24,12 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
     <>
       <DisplayBattleLayout>
         <BattleBox
-          color="orange"
+          color="#7498a6"
           // @ts-ignore
-          bgColor="rgb(80 80 80)"
+          bgColor="#1f1717"
         >
           <div>{nickname}</div>
-          <div style={{ color: "#FFF4FC" }}>
+          <div style={{ color: "#ff0202" }}>
             -{monsterAttacks[fightLogIndex]}
           </div>
 
@@ -59,9 +59,9 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
         </div>
 
         <BattleBox
-          color="#FFF4FC"
+          color="#7498a6"
           // @ts-ignore
-          bgColor="rgb(80 80 80)"
+          bgColor="#1f1717"
         >
           <div>Monster</div>
           <div style={{ color: "orange" }}>{playerAttacks[fightLogIndex]} </div>

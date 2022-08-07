@@ -106,12 +106,18 @@ const renderCommingSoon = () => {
 
 const AboutGameInfo = () => {
   return (
-    <ShopLayout
+    <div
       style={{
-        paddingLeft: "5%",
+        paddingLeft: "10%",
+        paddingBottom: "10%",
         color: "#f3f1f1",
         fontSize: "15px",
-        width: "350px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-evenly",
+        alignItems: "flex-start",
+        backgroundColor: "#0f0f1f",
+        boxShadow: "inset 0px 0px 60px 60px rgba(0, 0, 0, 1)",
       }}
     >
       <h3>Game info v2.0</h3>
@@ -123,7 +129,7 @@ const AboutGameInfo = () => {
       <h5>Drops</h5>
       {renderDropsPerSector()}
       {renderCommingSoon()}
-    </ShopLayout>
+    </div>
   );
 };
 
