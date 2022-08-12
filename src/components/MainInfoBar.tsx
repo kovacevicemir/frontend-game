@@ -22,6 +22,7 @@ const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
     experienceNeeded,
     gold,
   } = player;
+
   return (
     <MainInfoBarStyle>
       <CenterAlign>
@@ -57,7 +58,7 @@ const MainInfoBar: React.FC<IMainInfoBar> = ({ player }) => {
       <CenterAlign style={{ flexDirection: "column" }}>
         Experience {experience}/{experienceNeeded} <br />
         <Line
-          percent={Math.floor(experience / experienceNeeded)}
+          percent={(experience / experienceNeeded) * 100}
           strokeWidth={2}
           strokeColor="yellow"
         />

@@ -5,5 +5,6 @@ export const settings = {
   exploreCost: 1,
   inventoryCapacity: 21,
   shopAssetPrice: 1000,
-  itemPimpCost: 1500,
+  itemPimpCost: 2000,
+  offlineErrorMessage: "You are offline, check your internet connection!",
 };

@@ -1,7 +1,7 @@
 export const getShopAttributeMultiplier = (shopAssetName: string) => {
   switch (shopAssetName) {
     case "attackSpeed":
-      return 100;
+      return 50;
     case "attack":
       return 20;
     case "deffense":

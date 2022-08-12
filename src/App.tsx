@@ -12,11 +12,13 @@ import AboutGameInfo from "./components/AboutGameInfo";
 import SignUpLogin from "./components/SignUpLogin";
 import { update } from "./data/Api";
 import { random } from "./helpers/mathHelpers";
+import { settings } from "./helpers/settings";
 
 const App = () => {
   const [player, setPlayer] = useState<Player | null>(null);
   const playerRef = useRef<Player | null>(null);
   const [showNotification, setShowNotification] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   //Listen for level up
   useEffect(() => {
@@ -26,10 +28,18 @@ const App = () => {
   }, [playerRef, player?.level, player]);
 
   useEffect(() => {
+    const updatePlayer = async (player: Player) => {
+      try {
+        await update(player);
+        error !== "" && setError("");
+      } catch (error) {
+        setError(settings.offlineErrorMessage);
+      }
+    };
     if (player) {
       //TODO - not update player all the time
-      if (random(1, 4) === 1) {
-        update(player);
+      if (random(1, 2) === 1) {
+        updatePlayer(player);
       }
       setPlayer(player);
     }
@@ -41,6 +51,7 @@ const App = () => {
     player?.gold,
     player?.shopAssets,
     player?.level,
+    error,
   ]);
 
   if (player == null || playerRef.current == null) {
@@ -51,7 +62,10 @@ const App = () => {
         <MainLayout>
           <MainInfoBar player={player} />
           <RenderKillStats player={player} />
-          <World player={player} setPlayer={setPlayer} />
+          <div>
+            <World player={player} setPlayer={setPlayer} />
+            {error !== "" && <h2 style={{ color: "red" }}>{error}</h2>}
+          </div>
           <PlayerInfo player={player} setPlayer={setPlayer} />
           <Inventory player={player} setPlayer={setPlayer} />
           <Shop player={player} setPlayer={setPlayer} />

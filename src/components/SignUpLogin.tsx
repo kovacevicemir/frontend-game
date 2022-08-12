@@ -28,11 +28,19 @@ const SignUpLogin: React.FC<ISignUpLogin> = ({ setPlayer, playerRef }) => {
 
   const handleSubmit = async () => {
     if (isSignUp) {
-      const res = await signUp(nickname, password);
-      handleSubmitResponse(res);
+      try {
+        const res = await signUp(nickname, password);
+        handleSubmitResponse(res);
+      } catch (error) {
+        setError("Something went wrong, you are offline?");
+      }
     } else {
-      const res = await logIn(nickname, password);
-      handleSubmitResponse(res);
+      try {
+        const res = await logIn(nickname, password);
+        handleSubmitResponse(res);
+      } catch (error) {
+        setError("Something went wrong, you are offline?");
+      }
     }
   };
 

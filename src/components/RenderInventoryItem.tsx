@@ -29,13 +29,13 @@ const RenderInventoryItem: React.FC<IRenderInventoryItem> = ({
 }) => {
   const renderItemStats = (item: IItem) => {
     return (
-      <>
+      <div style={{ marginBottom: "5px" }}>
         <div>[{item.name}]</div>
         <div>Attack {item.attack}</div>
         <div>Deffense {item.deffense}</div>
         <div>Hp {item.healthPoints}</div>
         {item.upgrade && <RenderUpgradeImages item={item} />}
-      </>
+      </div>
     );
   };
 
