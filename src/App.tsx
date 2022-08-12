@@ -51,6 +51,13 @@ const App = () => {
         <MainLayout>
           <MainInfoBar player={player} />
           <RenderKillStats player={player} />
+          <World player={player} setPlayer={setPlayer} />
+          <PlayerInfo player={player} setPlayer={setPlayer} />
+          <Inventory player={player} setPlayer={setPlayer} />
+          <Shop player={player} setPlayer={setPlayer} />
+          <AboutGameInfo />
+
+          <div style={{ backgroundColor: "black" }}></div>
           {showNotification && (
             <LevelUpNotification
               player={player}
@@ -58,20 +65,6 @@ const App = () => {
               setShowNotification={setShowNotification}
             />
           )}
-          <World player={player} setPlayer={setPlayer} />
-          <div
-            style={{
-              backgroundColor: "black",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <PlayerInfo player={player} setPlayer={setPlayer} />
-          </div>
-          <Inventory player={player} setPlayer={setPlayer} />
-          <Shop player={player} setPlayer={setPlayer} />
-          <AboutGameInfo />
-          <div style={{ backgroundColor: "black" }}></div>
         </MainLayout>
       </MainFrame>
     );

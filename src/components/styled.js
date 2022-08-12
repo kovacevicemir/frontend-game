@@ -3,7 +3,6 @@ import world1 from "../images/world1.gif";
 import world2 from "../images/world2.gif";
 import world3 from "../images/world3.png";
 import Aic18 from "../images/Aic18.jpg";
-import Window03 from "../images/Window03.png";
 import FuturisticBg from "../images/FuturisticBg.png";
 import Button04 from "../images/Button04.png";
 
@@ -62,6 +61,9 @@ export const HorizontalScrollbar = styled.div`
       border-radius: 5px; /* roundness of the scroll thumb */
     }
   }
+  @media (max-width: 400px) {
+    max-width: 320px;
+  }
 `;
 
 export const CenterAlign = styled.div`
@@ -77,17 +79,22 @@ export const MainFrame = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 850px) {
+    padding: 10px;
+  }
 `;
 
 export const MainLayout = styled.div`
-  display: grid;
   height: 100vh;
+  background-color: black;
+  display: grid;
   grid-template-rows: 1fr 3fr 1fr;
   grid-template-columns: 2fr 1fr;
   text-align: center;
   @media (max-width: 850px) {
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 0.2fr;
     grid-template-columns: 1fr;
+    height: auto;
   }
 `;
 
@@ -168,7 +175,6 @@ export const WorldMainStyle = styled.div`
     `url(${getWorldBackgroundImage(props.worldImageIndex)})`};
   background-size: 100% 100%;
   width: 100%;
-  height: 100%;
   background-color: black;
   color: #fdfbf5;
   box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 1);
@@ -286,9 +292,9 @@ export const InventoryMainLayout = styled.div`
   @media (max-width: 850px) {
     min-height: auto;
     padding-top: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 120px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 60px;
   }
 `;
 
@@ -298,36 +304,48 @@ export const InventoryItemsLayout = styled.div`
   flex-wrap: wrap;
   gap: 15px;
   max-width: 500px;
+  @media (max-width: 850px) {
+    gap: 10px;
+  }
 `;
 
 export const DisplayBattleLayout = styled.div`
   display: flex;
+  border-radius: 5px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 10;
-  background-image: url(${Window03});
-  background-size: 100% 100%;
+  opacity: 0.95;
+  background-color: #242424;
+  box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 0.3);
   width: 50%;
   max-width: 500px;
   min-height: 200px;
   @media (max-width: 850px) {
     width: 90%;
+    background-color: black;
+    opacity: 0.93;
   }
 `;
 
 export const BattleBox = styled.div`
+  padding-top: 5px;
+  border: 1px solid #373131;
   border-radius: 5px;
-  width: 140px;
-  height: 64px;
+  width: 150px;
+  height: 80px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-size: 18px;
   font-weight: bold;
   color: ${({ color }) => (color ? color : "#fff")};
-  background-color: ${({ bgColor }) => (bgColor ? bgColor : "#ccc")}; ;
+  background-color: ${({ bgColor }) => (bgColor ? bgColor : "#ccc")};
+  @media (max-width: 850px) {
+    width: 125px;
+  }
 `;
 
 export const BattleOutcome = styled.div`
@@ -341,9 +359,7 @@ export const PlayerInfoLayout = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
-  min-width: 300px;
   max-width: 650px;
-  background-size: 100% 100%;
   border-radius: 5px;
   padding: 5% 3%;
   background-color: rgba(15, 15, 30, 1);
@@ -351,7 +367,7 @@ export const PlayerInfoLayout = styled.div`
   @media (max-width: 850px) {
     gap: 7px;
     padding: 6% 2%;
-    margin-top: 20px;
+    margin-top: 50px;
   }
 `;
 

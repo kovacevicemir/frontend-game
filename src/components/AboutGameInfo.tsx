@@ -23,8 +23,8 @@ const renderLevelBonuses = () => {
     if (key !== 31)
       return (
         <li key={key}>
-          Level {key} - ATT: {Math.round(value * (key < 15 ? 1 : 1.5))} DEF:{" "}
-          {key < 15 ? 1 : 10} HP: {Math.round(value * (key < 15 ? 2 : 4))}
+          Level {key} - ATT {Math.round(value * (key < 15 ? 1 : 1.5))} DEF{" "}
+          {key < 15 ? 1 : 10} HP {Math.round(value * (key < 15 ? 2 : 4))}
         </li>
       );
   });

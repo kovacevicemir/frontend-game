@@ -4,6 +4,7 @@ import { BattleBox, BattleOutcome, DisplayBattleLayout } from "./styled";
 import Coins from "../images/Coins.png";
 import { Line } from "rc-progress";
 import { hpLeft } from "../helpers/hpLeft";
+import { settings } from "../helpers/settings";
 
 const DisplayBattle: React.FC<IDisplayBattle> = ({
   battleData,
@@ -26,9 +27,9 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
         <BattleBox
           color="#7498a6"
           // @ts-ignore
-          bgColor="#1f1717"
+          bgColor="rgba(72,41,42,0.25)"
         >
-          <div>{nickname}</div>
+          <div style={{ fontSize: "12px" }}>{nickname}</div>
           <div style={{ color: "#ff0202" }}>
             -{monsterAttacks[fightLogIndex]}
           </div>
@@ -39,8 +40,8 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               fightLogIndex: fightLogIndex,
               attacks: monsterAttacks,
             })}
-            strokeWidth={4}
-            strokeColor="#0c920c"
+            strokeWidth={6}
+            strokeColor="#0a5f0a"
           />
         </BattleBox>
 
@@ -61,9 +62,9 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
         <BattleBox
           color="#7498a6"
           // @ts-ignore
-          bgColor="#1f1717"
+          bgColor="rgba(72,41,42,0.25)"
         >
-          <div>Monster</div>
+          <div style={{ fontSize: "12px" }}>{monster.name}</div>
           <div style={{ color: "orange" }}>{playerAttacks[fightLogIndex]} </div>
           <Line
             percent={hpLeft({
@@ -71,8 +72,8 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               fightLogIndex: fightLogIndex,
               attacks: playerAttacks,
             })}
-            strokeWidth={4}
-            strokeColor="#0c920c"
+            strokeWidth={6}
+            strokeColor="#0a5f0a"
           />
         </BattleBox>
       </DisplayBattleLayout>
@@ -94,10 +95,16 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               {gold}
               <img src={Coins} alt="gold" width={30} />
               {experience} EXP
-              {drops.length > 0 && (
-                <strong
-                  style={{ color: "orange", marginLeft: "5px" }}
-                >{` [${drops[0].name}]`}</strong>
+              {drops.length > 0 &&
+                player.inventoryItems.length < settings.inventoryCapacity && (
+                  <strong
+                    style={{ color: "orange", marginLeft: "5px" }}
+                  >{` [${drops[0].name}]`}</strong>
+                )}
+              {player.inventoryItems.length === settings.inventoryCapacity && (
+                <strong style={{ marginLeft: "5px", color: "red" }}>
+                  Full inventory
+                </strong>
               )}
             </>
           )}

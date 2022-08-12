@@ -24,19 +24,21 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
     return (
       <ShopItem>
         {shopAssetName === "attackSpeed" ? (
-          "Attack speed +1 "
+          " +1 Speed"
         ) : (
           <CenterAlign>
-            {title} +{getShopAttributeMultiplier(shopAssetName)}
-            <img
-              style={{ marginLeft: "2px" }}
-              src={iconPicker(shopAssetName)}
-              alt="attackIcon"
-            />
+            +{getShopAttributeMultiplier(shopAssetName)} {title}
           </CenterAlign>
         )}
 
-        <div>
+        <CenterAlign>
+          {shopAssetName !== "attackSpeed" && (
+            <img
+              style={{ marginLeft: "2px", marginRight: "3px" }}
+              src={iconPicker(shopAssetName)}
+              alt="attackIcon"
+            />
+          )}
           {player?.shopAssets?.[shopAssetName]}/{settings.maxShopAssets}
           <ShopButton
             onClick={() => {
@@ -45,7 +47,7 @@ const Shop: React.FC<IShop> = ({ player, setPlayer }) => {
           >
             +
           </ShopButton>
-        </div>
+        </CenterAlign>
       </ShopItem>
     );
   };
