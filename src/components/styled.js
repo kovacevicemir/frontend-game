@@ -83,9 +83,28 @@ export const MainLayout = styled.div`
   @media (max-width: 850px) {
     grid-template-rows: 1fr 0.2fr;
     grid-template-columns: 1fr;
-    height: auto;
-    max-width: 100vw;
     padding: 10px;
+  }
+  @media (max-width: 400px) {
+    grid-template-rows: 1fr 0.2fr;
+    grid-template-columns: 1fr;
+    max-width: 370px;
+    overflow: hidden;
+    padding: 5px;
+  }
+  @media (max-width: 380px) {
+    grid-template-rows: 1fr 0.2fr;
+    grid-template-columns: 1fr;
+    max-width: 370px;
+    overflow: hidden;
+    padding: 5px;
+  }
+  @media (max-width: 370px) {
+    grid-template-rows: 1fr 0.2fr;
+    grid-template-columns: 1fr;
+    max-width: 355px;
+    overflow: hidden;
+    padding: 5px;
   }
 `;
 
