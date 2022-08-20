@@ -358,7 +358,7 @@ export const PlayerInfoLayout = styled.div`
   @media (max-width: 850px) {
     gap: 7px;
     padding: 6% 2%;
-    margin-top: 50px;
+    padding-top: 50px;
   }
 `;
 
@@ -373,6 +373,7 @@ export const ItemStatsStyle = styled.div`
   border-radius: 5px;
   background-size: 100% 100%;
   min-width: 170px;
+  width: 100%;
   color: #fff;
   height: 100%;
   &:hover {

@@ -117,7 +117,7 @@ const AboutGameInfo = () => {
         boxShadow: "inset 0px 0px 60px 60px rgba(0, 0, 0, 1)",
       }}
     >
-      <summary>Game info v2.1</summary>
+      <summary>Game info v1.3</summary>
       {renderHowToPlay()}
       <div
         style={{
