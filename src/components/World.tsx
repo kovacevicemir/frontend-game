@@ -24,6 +24,7 @@ const World = ({ player, setPlayer }: IWorld) => {
   const [battleData, setBattleData] = useState<IBattleResults | null>(null);
   const [fightLogIndex, setFightLogIndex] = useState(0);
   const [worldImageIndex, setWorldImageIndex] = useState(1);
+  const [attackAll, setAttackAll] = useState(false);
 
   const handleMobAttack = (mob: Monster) => {
     const cp = copyPlayer(player);
@@ -46,6 +47,13 @@ const World = ({ player, setPlayer }: IWorld) => {
     monsters.length > 0 && handleMobAttack(monsters[0]);
   };
 
+  const handleAttackAll = () => {
+    if (battleData === null) {
+      handleFirstMobAttack();
+    }
+    setAttackAll(true);
+  };
+
   const handleSearchMonsters = () => {
     const cp = copyPlayer(player);
     cp.decreaseGold(settings.exploreCost);
@@ -53,6 +61,22 @@ const World = ({ player, setPlayer }: IWorld) => {
     setBattleData(null);
     setMonsters(generateMobsArray(difficulty));
   };
+
+  useEffect(() => {
+    if (battleData) {
+      if (
+        attackAll &&
+        monsters.length > 0 &&
+        battleData?.monsterAttacks.length < fightLogIndex
+      ) {
+        handleFirstMobAttack();
+      }
+    }
+
+    if (monsters.length === 0) {
+      setAttackAll(false);
+    }
+  }, [attackAll, monsters, battleData, fightLogIndex]);
 
   useEffect(() => {
     if (battleData) {
@@ -117,7 +141,7 @@ const World = ({ player, setPlayer }: IWorld) => {
         <GameButton
           // @ts-ignore
           image={Button01}
-          onClick={() => handleFirstMobAttack()}
+          onClick={() => handleAttackAll()}
           letterSpacing={"4px"}
           disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
           style={{

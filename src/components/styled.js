@@ -84,6 +84,8 @@ export const MainLayout = styled.div`
     grid-template-rows: 1fr 0.2fr;
     grid-template-columns: 1fr;
     height: auto;
+    max-width: 100vw;
+    padding: 10px;
   }
 `;
 
