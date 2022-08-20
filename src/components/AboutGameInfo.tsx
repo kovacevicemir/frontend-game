@@ -1,5 +1,4 @@
 import { random } from "lodash";
-import React from "react";
 import { monstersDictionary } from "../data/mockMonsterList";
 import {
   levelDefinitions,
@@ -105,10 +104,9 @@ const renderCommingSoon = () => {
 
 const AboutGameInfo = () => {
   return (
-    <div
+    <details
       style={{
-        paddingLeft: "10%",
-        paddingBottom: "10%",
+        padding: "5%",
         color: "#f3f1f1",
         fontSize: "15px",
         display: "flex",
@@ -119,16 +117,43 @@ const AboutGameInfo = () => {
         boxShadow: "inset 0px 0px 60px 60px rgba(0, 0, 0, 1)",
       }}
     >
-      <h3>Game info v2.1</h3>
+      <summary>Game info v2.1</summary>
       {renderHowToPlay()}
-      <h5>Experience needed per level</h5>
-      {renderLevelDefs()}
-      <h5>Level Bonuses</h5>
-      {renderLevelBonuses()}
-      <h5>Drops</h5>
-      {renderDropsPerSector()}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          marginBottom: "10px",
+        }}
+      >
+        <h5>Experience needed per level</h5>
+        {renderLevelDefs()}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          marginBottom: "10px",
+        }}
+      >
+        <h5>Level Bonuses</h5>
+        {renderLevelBonuses()}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          marginBottom: "10px",
+        }}
+      >
+        <h5>Drops</h5>
+        {renderDropsPerSector()}
+      </div>
       {renderCommingSoon()}
-    </div>
+    </details>
   );
 };
 

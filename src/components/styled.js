@@ -380,7 +380,7 @@ export const ItemStatsStyle = styled.div`
   align-items: center;
   background-color: black;
   opacity: 0.98;
-  border: 2px solid #ddc08c;
+  border: 2px solid #1c1a17;
   border-radius: 5px;
   background-size: 100% 100%;
   min-width: 170px;
