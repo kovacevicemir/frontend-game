@@ -73,17 +73,6 @@ export const CenterAlign = styled.div`
   align-items: center;
 `;
 
-export const MainFrame = styled.div`
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  @media (max-width: 850px) {
-    padding: 10px;
-  }
-`;
-
 export const MainLayout = styled.div`
   height: auto;
   background-color: black;
