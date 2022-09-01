@@ -71,6 +71,9 @@ const renderHowToPlay = () => {
       <h5>How to play</h5>
       <li>Attack monsters</li>
       <li>Explore</li>
+      <li>Blue Square represents player</li>
+      <li>Red Square represents group of monsters</li>
+      <li>Black Square represents wall</li>
       <li>Equip items</li>
       <li>Level up</li>
       <li>Move to next sector</li>
