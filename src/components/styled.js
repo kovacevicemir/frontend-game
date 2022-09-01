@@ -185,7 +185,7 @@ export const WorldMainStyle = styled.div`
     `url(${getWorldBackgroundImage(props.worldImageIndex)})`};
   background-size: 100% 100%;
   width: 100%;
-  min-height: 650px;
+  min-height: 800px;
   background-color: black;
   color: #fdfbf5;
   box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 1);
@@ -205,8 +205,8 @@ export const WorldMiddleLayout = styled.div`
 `;
 
 export const MobAttackButton = styled.button`
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
   border-radius: 50%;
   border: none;
   background-image: url(${Aic18});
@@ -216,8 +216,8 @@ export const MobAttackButton = styled.button`
     cursor: pointer;
   }
   @media (max-width: 850px) {
-    height: 35px;
-    width: 35px;
+    height: 15px;
+    width: 15px;
   }
 `;
 
@@ -290,7 +290,7 @@ export const MonsterContainer = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  font-size: 18px;
+  font-size: 14px;
 `;
 
 export const InventoryMainLayout = styled.div`
@@ -333,7 +333,7 @@ export const DisplayBattleLayout = styled.div`
   box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 0.3);
   width: 50%;
   max-width: 500px;
-  min-height: 200px;
+  min-height: 170px;
   @media (max-width: 850px) {
     width: 90%;
     background-color: black;
@@ -377,8 +377,9 @@ export const PlayerInfoLayout = styled.div`
   background-color: rgba(15, 15, 30, 1);
   box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 1);
   @media (max-width: 850px) {
-    gap: 7px;
-    padding: 6% 2%;
+    gap: 2px;
+    padding: 6% 0%;
+    padding-right: 17px;
     padding-top: 50px;
   }
 `;
@@ -414,4 +415,38 @@ export const GoldDisplayStyle = styled.div`
   @media (max-width: 850px) {
     padding-left: 0px;
   }
+`;
+
+const getCellBackgroundColor = (cell) => {
+  if (cell?.monsters?.length > 0 && cell.isPlayer) {
+    return "orange";
+  }
+
+  if (cell?.monsters?.length > 0) {
+    return "red";
+  }
+
+  if (cell.isPlayer) {
+    return "blue";
+  }
+
+  switch (cell.variant) {
+    case 0:
+      return "gray";
+    case 1:
+      return "black";
+    case 2:
+      return "orange";
+
+    default:
+      return "yellow";
+  }
+};
+
+export const CellStyle = styled.div`
+  width: 22px;
+  height: 22px;
+  background-color: ${({ cell }) => getCellBackgroundColor(cell)};
+  border-radius: 5px;
+  margin: 1px;
 `;

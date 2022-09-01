@@ -14,7 +14,8 @@ const RenderMobs: React.FC<IRenderMobs> = ({ monsters, handleMobAttack }) => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: 5,
+        gap: 1,
+        minHeight: "220px",
       }}
     >
       {monsters.map((mob: Monster, index: number) => {

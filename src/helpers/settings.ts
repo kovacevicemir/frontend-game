@@ -7,4 +7,5 @@ export const settings = {
   shopAssetPrice: 1000,
   itemPimpCost: 2000,
   offlineErrorMessage: "You are offline, check your internet connection!",
+  mapSize: 10,
 };

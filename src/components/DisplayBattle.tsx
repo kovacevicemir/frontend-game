@@ -84,10 +84,12 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            paddingTop: "12px",
+            fontSize: "15px",
           }}
         >
           {experience === 0 ? (
-            <p style={{ color: "red", fontSize: "17px", fontWeight: "bolder" }}>
+            <p style={{ color: "red", fontSize: "15px", fontWeight: "bolder" }}>
               You lost the battle!
             </p>
           ) : (

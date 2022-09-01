@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { copyPlayer } from "../helpers/copyPlayer";
 import { Monster } from "../models/Monster";
 import { Player } from "../models/Player";
 import { IBattleResults } from "../interfaces/IBattleResults";
 import DisplayBattle from "./DisplayBattle";
-import { generateMobsArray } from "../helpers/generateMobsArray";
 import RenderMobs from "./RenderMobs";
 import RenderDifficulties from "./RenderDifficulties";
 import Button01 from "../images/Button01.png";
@@ -12,6 +11,8 @@ import { WorldMiddleLayout, GameButton, WorldMainStyle } from "./styled";
 import { getShopAttributeMultiplier } from "../helpers/shopAssetsHelper";
 import { settings } from "../helpers/settings";
 import { worldImageDefinitions } from "../helpers/worldImageDefinitions";
+import MapCell from "./MapCell";
+import { Cell, generateWorldMap } from "../helpers/mapHelper";
 
 interface IWorld {
   player: Player;
@@ -25,6 +26,10 @@ const World = ({ player, setPlayer }: IWorld) => {
   const [fightLogIndex, setFightLogIndex] = useState(0);
   const [worldImageIndex, setWorldImageIndex] = useState(1);
   const [attackAll, setAttackAll] = useState(false);
+  const [cord, setCord] = useState<number[]>([5, 0]);
+  const [worldMap, setWorldMap] = useState<Cell[][]>(
+    generateWorldMap(difficulty)
+  );
 
   const handleMobAttack = (mob: Monster) => {
     const cp = copyPlayer(player);
@@ -55,11 +60,14 @@ const World = ({ player, setPlayer }: IWorld) => {
   };
 
   const handleSearchMonsters = () => {
-    const cp = copyPlayer(player);
-    cp.decreaseGold(settings.exploreCost);
-    setPlayer(cp);
-    setBattleData(null);
-    setMonsters(generateMobsArray(difficulty));
+    setTimeout(() => {
+      const cp = copyPlayer(player);
+      cp.decreaseGold(settings.exploreCost);
+      setPlayer(cp);
+      setBattleData(null);
+      setWorldMap(generateWorldMap(difficulty));
+      setCord([5, 0]);
+    }, 500);
   };
 
   useEffect(() => {
@@ -96,10 +104,111 @@ const World = ({ player, setPlayer }: IWorld) => {
   }, [battleData, player]);
 
   useEffect(() => {
-    setMonsters(generateMobsArray(difficulty));
     const i = worldImageDefinitions.get(difficulty);
     i !== undefined && setWorldImageIndex(i);
   }, [difficulty]);
+
+  const moveUp = () => {
+    if (cord[0] - 1 >= 0 && worldMap[cord[0] - 1][cord[1]].variant !== 1) {
+      let newWorldMap = [...worldMap];
+      newWorldMap[cord[0]][cord[1]].isPlayer = false;
+      newWorldMap[cord[0] - 1][cord[1]].isPlayer = true;
+
+      if (typeof newWorldMap[cord[0] - 1][cord[1]].monsters !== "undefined") {
+        //@ts-ignore
+        setMonsters(newWorldMap[cord[0] - 1][cord[1]].monsters);
+      } else {
+        setMonsters([]);
+      }
+
+      setCord([cord[0] - 1, cord[1]]);
+      setWorldMap(newWorldMap);
+    }
+  };
+
+  const moveDown = () => {
+    if (cord[0] + 1 < 11 && worldMap[cord[0] + 1][cord[1]].variant !== 1) {
+      let newWorldMap = [...worldMap];
+      newWorldMap[cord[0]][cord[1]].isPlayer = false;
+      newWorldMap[cord[0] + 1][cord[1]].isPlayer = true;
+
+      if (typeof newWorldMap[cord[0] + 1][cord[1]].monsters !== "undefined") {
+        //@ts-ignore
+        setMonsters(newWorldMap[cord[0] + 1][cord[1]].monsters);
+      } else {
+        setMonsters([]);
+      }
+
+      setCord([cord[0] + 1, cord[1]]);
+      setWorldMap(newWorldMap);
+    }
+  };
+
+  const moveRight = () => {
+    if (cord[1] + 1 < 10 && worldMap[cord[0]][cord[1] + 1].variant !== 1) {
+      let newWorldMap = [...worldMap];
+      newWorldMap[cord[0]][cord[1]].isPlayer = false;
+      newWorldMap[cord[0]][cord[1] + 1].isPlayer = true;
+
+      if (typeof newWorldMap[cord[0]][cord[1] + 1].monsters !== "undefined") {
+        //@ts-ignore
+        setMonsters(newWorldMap[cord[0]][cord[1] + 1].monsters);
+      } else {
+        setMonsters([]);
+      }
+      setCord([cord[0], cord[1] + 1]);
+      setWorldMap(newWorldMap);
+    }
+  };
+
+  const moveLeft = () => {
+    if (cord[1] - 1 < 10 && worldMap[cord[0]][cord[1] - 1].variant !== 1) {
+      let newWorldMap = [...worldMap];
+      newWorldMap[cord[0]][cord[1]].isPlayer = false;
+      newWorldMap[cord[0]][cord[1] - 1].isPlayer = true;
+
+      if (typeof newWorldMap[cord[0]][cord[1] - 1].monsters !== "undefined") {
+        //@ts-ignore
+        setMonsters(newWorldMap[cord[0]][cord[1] - 1].monsters);
+      } else {
+        setMonsters([]);
+      }
+
+      setCord([cord[0], cord[1] - 1]);
+      setWorldMap(newWorldMap);
+    }
+  };
+
+  const keyFunction = useCallback(
+    (event: any) => {
+      if (event.keyCode === 87) {
+        moveUp();
+      }
+      if (event.keyCode === 65) {
+        moveLeft();
+      }
+      if (event.keyCode === 83) {
+        moveDown();
+      }
+      if (event.keyCode === 68) {
+        moveRight();
+      }
+      if (event.keyCode === 81) {
+        handleAttackAll();
+      }
+      if (event.keyCode === 69) {
+        handleSearchMonsters();
+      }
+    },
+    [cord, monsters, handleAttackAll, handleSearchMonsters]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyFunction);
+    return () => {
+      document.removeEventListener("keydown", keyFunction);
+    };
+  }, [keyFunction]);
 
   return (
     <WorldMainStyle
@@ -114,6 +223,18 @@ const World = ({ player, setPlayer }: IWorld) => {
       />
 
       <WorldMiddleLayout>
+        <div>
+          {worldMap.map((rows) => {
+            return (
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                {rows.map((col) => {
+                  return <MapCell cell={col} />;
+                })}
+              </div>
+            );
+          })}
+        </div>
+
         {!battleData?.playerAttacks[fightLogIndex] &&
           battleData?.win !== false && (
             <RenderMobs monsters={monsters} handleMobAttack={handleMobAttack} />
@@ -128,6 +249,37 @@ const World = ({ player, setPlayer }: IWorld) => {
       </WorldMiddleLayout>
 
       <div>
+        {/* JOYSTICK */}
+        <div>
+          <GameButton // @ts-ignore
+            image={Button01}
+            onClick={() => moveUp()}
+          >
+            W
+          </GameButton>
+          <br />
+          <GameButton // @ts-ignore
+            image={Button01}
+            onClick={() => moveLeft()}
+          >
+            A
+          </GameButton>
+
+          <GameButton // @ts-ignore
+            image={Button01}
+            onClick={() => moveRight()}
+          >
+            D
+          </GameButton>
+          <GameButton // @ts-ignore
+            image={Button01}
+            onClick={() => moveDown()}
+          >
+            S
+          </GameButton>
+        </div>
+
+        <br />
         <GameButton
           // @ts-ignore
           image={Button01}
@@ -136,13 +288,13 @@ const World = ({ player, setPlayer }: IWorld) => {
           disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
           style={{ padding: "7px" }}
         >
-          Explore
+          Explore(E)
         </GameButton>
         <GameButton
           // @ts-ignore
           image={Button01}
           onClick={() => handleAttackAll()}
-          letterSpacing={"4px"}
+          letterSpacing={"3px"}
           disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
           style={{
             padding: "7px",
@@ -152,7 +304,7 @@ const World = ({ player, setPlayer }: IWorld) => {
                 : "#fff",
           }}
         >
-          Attack
+          Attack(Q)
         </GameButton>
       </div>
     </WorldMainStyle>
