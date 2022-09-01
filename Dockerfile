@@ -3,7 +3,7 @@
 # push new/update:  docker build -t emirkovacevic/aegis7:aegis7 .
 # docker push emirkovacevic/aegis7:aegis7
 # docker pull emirkovacevic/aegis7:aegis7 from ec2..
-# docker run -itd -p 80:80 emirkovacevic/aegis7
+# docker run -itd -p 80:80 emirkovacevic/aegis7:aegis7
 
 FROM node:16-alpine AS builder
 

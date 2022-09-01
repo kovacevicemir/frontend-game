@@ -267,15 +267,15 @@ const World = ({ player, setPlayer }: IWorld) => {
 
           <GameButton // @ts-ignore
             image={Button01}
-            onClick={() => moveRight()}
-          >
-            D
-          </GameButton>
-          <GameButton // @ts-ignore
-            image={Button01}
             onClick={() => moveDown()}
           >
             S
+          </GameButton>
+          <GameButton // @ts-ignore
+            image={Button01}
+            onClick={() => moveRight()}
+          >
+            D
           </GameButton>
         </div>
 
