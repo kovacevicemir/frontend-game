@@ -185,7 +185,7 @@ export const WorldMainStyle = styled.div`
     `url(${getWorldBackgroundImage(props.worldImageIndex)})`};
   background-size: 100% 100%;
   width: 100%;
-  min-height: 800px;
+  min-height: 600px;
   background-color: black;
   color: #fdfbf5;
   box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 1);
@@ -201,7 +201,7 @@ export const WorldMiddleLayout = styled.div`
   gap: 5;
   justify-content: center;
   align-items: center;
-  min-height: 400px;
+  min-height: 600px;
 `;
 
 export const MobAttackButton = styled.button`
@@ -290,7 +290,7 @@ export const MonsterContainer = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  font-size: 14px;
+  font-size: 16px;
 `;
 
 export const InventoryMainLayout = styled.div`
@@ -334,6 +334,7 @@ export const DisplayBattleLayout = styled.div`
   width: 50%;
   max-width: 500px;
   min-height: 170px;
+  margin-top: 10px;
   @media (max-width: 850px) {
     width: 90%;
     background-color: black;
@@ -444,8 +445,8 @@ const getCellBackgroundColor = (cell) => {
 };
 
 export const CellStyle = styled.div`
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   background-color: ${({ cell }) => getCellBackgroundColor(cell)};
   border-radius: 5px;
   margin: 1px;

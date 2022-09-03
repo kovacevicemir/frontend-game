@@ -254,12 +254,14 @@ const World = ({ player, setPlayer }: IWorld) => {
           <GameButton // @ts-ignore
             image={Button01}
             onClick={() => moveUp()}
+            style={{ minWidth: "50px", minHeight: "35px" }}
           >
             W
           </GameButton>
           <br />
           <GameButton // @ts-ignore
             image={Button01}
+            style={{ minWidth: "50px", minHeight: "35px" }}
             onClick={() => moveLeft()}
           >
             A
@@ -268,12 +270,14 @@ const World = ({ player, setPlayer }: IWorld) => {
           <GameButton // @ts-ignore
             image={Button01}
             onClick={() => moveDown()}
+            style={{ minWidth: "50px", minHeight: "35px" }}
           >
             S
           </GameButton>
           <GameButton // @ts-ignore
             image={Button01}
             onClick={() => moveRight()}
+            style={{ minWidth: "50px", minHeight: "35px" }}
           >
             D
           </GameButton>
