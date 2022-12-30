@@ -81,7 +81,7 @@ export const MainLayout = styled.div`
   grid-template-rows: 0.1fr 0.5fr 0.1fr;
   grid-template-columns: 2fr 1fr;
   text-align: center;
-  @media (max-width: 850px) {
+  @media (max-width: 1400px) {
     grid-template-rows: 1fr 0.2fr;
     grid-template-columns: 1fr;
     padding: 10px;
@@ -381,7 +381,6 @@ export const PlayerInfoLayout = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
-  max-width: 650px;
   border-radius: 5px;
   padding: 5% 3%;
   background-color: rgba(15, 15, 30, 1);
