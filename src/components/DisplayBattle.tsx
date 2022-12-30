@@ -1,6 +1,12 @@
 import React from "react";
 import { IDisplayBattle } from "../interfaces/IDisplayBattle";
-import { BattleBox, BattleOutcome, DisplayBattleLayout } from "./styled";
+import {
+  BattleBox,
+  BattleOutcome,
+  BattleOutcomeInner,
+  DisplayBattleLayout,
+  VScontainer,
+} from "./styled";
 import Coins from "../images/Coins.png";
 import { Line } from "rc-progress";
 import { hpLeft } from "../helpers/hpLeft";
@@ -45,19 +51,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
           />
         </BattleBox>
 
-        <div
-          style={{
-            width: "40px",
-            height: "40px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: "15px",
-            fontWeight: "bold",
-          }}
-        >
-          VS
-        </div>
+        <VScontainer>VS</VScontainer>
 
         <BattleBox
           color="#7498a6"
@@ -79,15 +73,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
       </DisplayBattleLayout>
 
       <BattleOutcome>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            paddingTop: "12px",
-            fontSize: "15px",
-          }}
-        >
+        <BattleOutcomeInner>
           {experience === 0 ? (
             <p style={{ color: "red", fontSize: "15px", fontWeight: "bolder" }}>
               You lost the battle!
@@ -110,7 +96,7 @@ const DisplayBattle: React.FC<IDisplayBattle> = ({
               )}
             </>
           )}
-        </div>
+        </BattleOutcomeInner>
       </BattleOutcome>
     </>
   );

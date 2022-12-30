@@ -1,6 +1,10 @@
 import { IItem, itemSlotEnum } from "../interfaces/IItem";
-import { ItemImage, ItemStatsStyle } from "./styled";
-import { imagePlaceholder } from "../helpers/imagePlaceholder";
+import {
+  ItemImage,
+  ItemContainer,
+  ItemStatsStyle,
+  ItemPlaceholder,
+} from "./styled";
 import RenderUpgradeImages from "./RenderUpgradeImages";
 
 interface IRenderItem {
@@ -11,28 +15,11 @@ interface IRenderItem {
 
 const RenderItem = ({ item, slot, handleUnequip }: IRenderItem) => {
   return (
-    <div
-      style={{
-        width: "29%",
-        backgroundColor: "black",
-        fontFamily: "monospace",
-        color: "#fff",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: "5px",
-        margin: "2px",
-      }}
-    >
+    <ItemContainer>
       {item === null && (
-        <div
-          style={{
-            width: "100px",
-            height: "100px",
-            backgroundImage: `url(${imagePlaceholder(slot)})`,
-            backgroundSize: "100% 100%",
-            backgroundRepeat: "no-repeat",
-          }}
+        <ItemPlaceholder
+          //@ts-ignore
+          slot={slot}
         />
       )}
 
@@ -52,7 +39,7 @@ const RenderItem = ({ item, slot, handleUnequip }: IRenderItem) => {
           </div>
         </ItemStatsStyle>
       )}
-    </div>
+    </ItemContainer>
   );
 };
 

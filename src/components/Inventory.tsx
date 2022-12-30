@@ -5,6 +5,7 @@ import { Player } from "../models/Player";
 import {
   CenterAlign,
   GameButton,
+  InventoryHeaderContainer,
   InventoryItemsLayout,
   InventoryMainLayout,
 } from "./styled";
@@ -45,15 +46,7 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
 
   const renderInventoryHeader = () => {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "5px",
-          fontSize: "20px",
-        }}
-      >
+      <InventoryHeaderContainer>
         <img src={Chest2} width={50} alt="chest2" />
         <div style={{ fontSize: "15px" }}>
           {player.inventoryItems.length === settings.inventoryCapacity ? (
@@ -74,7 +67,7 @@ const Inventory: React.FC<IInventory> = ({ player, setPlayer }: IInventory) => {
         >
           Clear Inventory
         </GameButton>
-      </div>
+      </InventoryHeaderContainer>
     );
   };
 

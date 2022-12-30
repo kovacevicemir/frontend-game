@@ -7,7 +7,12 @@ import DisplayBattle from "./DisplayBattle";
 import RenderMobs from "./RenderMobs";
 import RenderDifficulties from "./RenderDifficulties";
 import Button01 from "../images/Button01.png";
-import { WorldMiddleLayout, GameButton, WorldMainStyle } from "./styled";
+import {
+  WorldMiddleLayout,
+  GameButton,
+  WorldMainStyle,
+  CenterAlign,
+} from "./styled";
 import { getShopAttributeMultiplier } from "../helpers/shopAssetsHelper";
 import { settings } from "../helpers/settings";
 import { worldImageDefinitions } from "../helpers/worldImageDefinitions";
@@ -59,7 +64,7 @@ const World = ({ player, setPlayer }: IWorld) => {
     setAttackAll(true);
   };
 
-  const handleSearchMonsters = () => {
+  const handleSearchMonsters = (difficulty: number) => {
     setTimeout(() => {
       const cp = copyPlayer(player);
       cp.decreaseGold(settings.exploreCost);
@@ -68,6 +73,11 @@ const World = ({ player, setPlayer }: IWorld) => {
       setWorldMap(generateWorldMap(difficulty));
       setCord([5, 0]);
     }, 500);
+  };
+
+  const handleSetDifficulty = (difficulty: number) => {
+    handleSearchMonsters(difficulty);
+    setDifficulty(difficulty);
   };
 
   useEffect(() => {
@@ -197,7 +207,7 @@ const World = ({ player, setPlayer }: IWorld) => {
         handleAttackAll();
       }
       if (event.keyCode === 69) {
-        handleSearchMonsters();
+        handleSearchMonsters(difficulty);
       }
     },
     [cord, monsters, handleAttackAll, handleSearchMonsters]
@@ -217,23 +227,21 @@ const World = ({ player, setPlayer }: IWorld) => {
     >
       <RenderDifficulties
         difficulty={difficulty}
-        setDifficulty={setDifficulty}
+        setDifficulty={handleSetDifficulty}
         setBattleData={setBattleData}
         disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
       />
 
       <WorldMiddleLayout>
-        <div>
-          {worldMap.map((rows) => {
-            return (
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                {rows.map((col) => {
-                  return <MapCell cell={col} />;
-                })}
-              </div>
-            );
-          })}
-        </div>
+        {worldMap.map((rows) => {
+          return (
+            <CenterAlign>
+              {rows.map((col) => {
+                return <MapCell cell={col} />;
+              })}
+            </CenterAlign>
+          );
+        })}
 
         {!battleData?.playerAttacks[fightLogIndex] &&
           battleData?.win !== false && (
@@ -248,8 +256,8 @@ const World = ({ player, setPlayer }: IWorld) => {
         )}
       </WorldMiddleLayout>
 
+      {/* JOYSTICK */}
       <div>
-        {/* JOYSTICK */}
         <div>
           <GameButton // @ts-ignore
             image={Button01}
@@ -287,7 +295,7 @@ const World = ({ player, setPlayer }: IWorld) => {
         <GameButton
           // @ts-ignore
           image={Button01}
-          onClick={() => handleSearchMonsters()}
+          onClick={() => handleSearchMonsters(difficulty)}
           letterSpacing={"2px"}
           disabled={battleData?.playerAttacks[fightLogIndex] !== undefined}
           style={{ padding: "7px" }}

@@ -1,6 +1,12 @@
 import React from "react";
 import { Monster } from "../models/Monster";
-import { MobAttackButton, MonsterContainer } from "./styled";
+import {
+  CenterAlign,
+  MobAttackButton,
+  MonsterContainer,
+  MonsterImage,
+  RenderMobsContainer,
+} from "./styled";
 
 interface IRenderMobs {
   monsters: Monster[];
@@ -8,22 +14,14 @@ interface IRenderMobs {
 }
 const RenderMobs: React.FC<IRenderMobs> = ({ monsters, handleMobAttack }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 1,
-        minHeight: "220px",
-      }}
-    >
+    <RenderMobsContainer>
       {monsters.map((mob: Monster, index: number) => {
         return (
           <MonsterContainer key={index}>
-            <div>
+            <CenterAlign>
+              {mob.image && <MonsterImage src={mob.image} alt="alt" />}
               {mob.name} [{mob.level}]
-            </div>
+            </CenterAlign>
             <MobAttackButton
               onClick={() => {
                 handleMobAttack(mob);
@@ -32,7 +30,7 @@ const RenderMobs: React.FC<IRenderMobs> = ({ monsters, handleMobAttack }) => {
           </MonsterContainer>
         );
       })}
-    </div>
+    </RenderMobsContainer>
   );
 };
 

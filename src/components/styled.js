@@ -5,6 +5,7 @@ import world3 from "../images/world3.png";
 import Aic18 from "../images/Aic18.jpg";
 import FuturisticBg from "../images/FuturisticBg.png";
 import Button04 from "../images/Button04.png";
+import { imagePlaceholder } from "../helpers/imagePlaceholder";
 
 export const NotificationLayout = styled.div`
   position: fixed;
@@ -366,6 +367,14 @@ export const BattleOutcome = styled.div`
   top: -55px;
 `;
 
+export const BattleOutcomeInner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 12px;
+  font-size: 15px;
+`;
+
 export const PlayerInfoLayout = styled.div`
   display: flex;
   flex-direction: row;
@@ -450,4 +459,57 @@ export const CellStyle = styled.div`
   background-color: ${({ cell }) => getCellBackgroundColor(cell)};
   border-radius: 5px;
   margin: 1px;
+`;
+
+export const MonsterImage = styled.img`
+  margin-right: 5px;
+  border-radius: 5px;
+  width: 40px;
+`;
+
+export const RenderMobsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1;
+  min-height: 220px;
+`;
+
+export const ItemContainer = styled.div`
+  width: 29%;
+  background-color: black;
+  font-family: monospace;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin: 2px;
+`;
+
+export const ItemPlaceholder = styled.div`
+  width: 100px;
+  height: 100px;
+  background-image: ${(props) => `url(${imagePlaceholder(props.slot)})`};
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+`;
+
+export const InventoryHeaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 20px;
+`;
+
+export const VScontainer = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
 `;

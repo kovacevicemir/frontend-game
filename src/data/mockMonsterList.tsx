@@ -11,7 +11,9 @@ export const monstersDictionary: Record<number, object> = {
     30,
     [items[1], items[2], items[3], items[4]],
     1,
-    1
+    1,
+    undefined,
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGh-ifjL9LDua9UQx_Soile0YaNnyNbgx1VQ&usqp=CAU"
   ),
   2: new Monster(
     2,

@@ -15,6 +15,7 @@ export class Monster implements IMonster {
   experience: number;
   gold: number;
   battleResults?: IBattleResults;
+  image?: string;
 
   constructor(
     id: number,
@@ -26,7 +27,8 @@ export class Monster implements IMonster {
     droppableItems: IItem[],
     experience: number,
     gold: number,
-    battleResults?: IBattleResults
+    battleResults?: IBattleResults,
+    image?: string
   ) {
     this.id = id;
     this.name = name;
@@ -38,6 +40,7 @@ export class Monster implements IMonster {
     this.experience = experience;
     this.gold = gold;
     this.battleResults = battleResults;
+    this.image = image;
   }
 
   attackMe(player: Player): void {
