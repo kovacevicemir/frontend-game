@@ -11,5 +11,5 @@ export interface IMonster {
   droppableItems: IItem[];
   experience: number;
   gold: number;
-  attackMe(player: IPlayer): void;
+  attackMe?(player: IPlayer): void;
 }

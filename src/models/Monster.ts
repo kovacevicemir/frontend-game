@@ -18,27 +18,19 @@ export class Monster implements IMonster {
   image?: string;
 
   constructor(
-    id: number,
-    name: string,
-    level: number,
-    attack: number,
-    deffense: number,
-    healthPoints: number,
-    droppableItems: IItem[],
-    experience: number,
-    gold: number,
+    monster:IMonster,
     battleResults?: IBattleResults,
     image?: string
   ) {
-    this.id = id;
-    this.name = name;
-    this.level = level;
-    this.attack = attack;
-    this.deffense = deffense;
-    this.healthPoints = healthPoints;
-    this.droppableItems = droppableItems;
-    this.experience = experience;
-    this.gold = gold;
+    this.id = monster.id;
+    this.name = monster.name;
+    this.level = monster.level;
+    this.attack = monster.attack;
+    this.deffense = monster.deffense;
+    this.healthPoints = monster.healthPoints;
+    this.droppableItems = monster.droppableItems;
+    this.experience = monster.experience;
+    this.gold = monster.gold;
     this.battleResults = battleResults;
     this.image = image;
   }
