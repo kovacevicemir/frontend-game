@@ -66,6 +66,7 @@ const renderHowToPlay = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
+        fontFamily: "cursive",
       }}
     >
       <h5>How to play</h5>
@@ -118,6 +119,7 @@ const AboutGameInfo = () => {
         alignItems: "flex-start",
         backgroundColor: "#0f0f1f",
         boxShadow: "inset 0px 0px 60px 60px rgba(0, 0, 0, 1)",
+        fontFamily: "cursive"
       }}
     >
       <summary>Game info v1.3</summary>
