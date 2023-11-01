@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { logIn, signUp } from "../data/Api";
 import { copyPlayer } from "../helpers/copyPlayer";
 import { Player } from "../models/Player";
@@ -43,6 +43,63 @@ const SignUpLogin: React.FC<ISignUpLogin> = ({ setPlayer, playerRef }) => {
       }
     }
   };
+
+  // ISOLATING FRONTEND
+  useEffect(() => {
+    // GET PLAYER FROM LOCAL STORAGE & SET
+    // @ts-ignore
+    const existingPlayer = JSON.parse(localStorage.getItem("aegis_player"));
+
+    if (existingPlayer) {
+      // @ts-ignore
+      const player_one = copyPlayer(existingPlayer);
+      player_one.computePlayerStats();
+      playerRef.current = player_one;
+      setPlayer(player_one);
+    } else {
+      // NO PLAYER IN LOCAL STORAGE ? SET NEW ONE
+      const newPlayer = {
+        _id: "62ef7c0b4e08c03a15012b46",
+        nickname: "Player",
+        password: "admin",
+        level: 1,
+        equipedItems: {
+          weapon: null,
+          armor: null,
+          boots: null,
+          belt: null,
+          ring: null,
+          neck: null,
+          shield: null,
+          head: null,
+        },
+        inventoryItems: [],
+        experience: 0,
+        gold: 0,
+        shopAssets: {
+          attackSpeed: 0,
+          attack: 0,
+          deffense: 0,
+          healthPoints: 0,
+        },
+        playerStatistics: {
+          monsterKilled: 0,
+          playersKilled: 0,
+        },
+        __v: 0,
+      };
+
+      //@ts-ignore
+      localStorage.setItem("aegis_player", JSON.stringify(newPlayer));
+      //@ts-ignore
+      const storagePlayer = JSON.parse(localStorage.getItem("aegis_player"));
+      // @ts-ignore
+      const player = copyPlayer(storagePlayer);
+      player.computePlayerStats();
+      playerRef.current = player;
+      setPlayer(player);
+    }
+  }, []);
 
   return (
     <CenterAlign

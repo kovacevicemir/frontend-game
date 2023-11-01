@@ -25,8 +25,8 @@ const RenderDifficulties: React.FC<IRenderDifficulties> = ({
             <GameButton
               key={key}
               // @ts-ignore
-              image={Button01}
-              opacity={`${difficulty === dif ? 0.6 : 1}`}
+              image={difficulty === dif ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbeO0xApU_69EQeYXzKR9ONbVlsTGVJR0adQ&usqp=CAU" : Button01}
+              opacity={`${difficulty === dif ? 0.9 : 1}`}
               onClick={() => {
                 if (disabled === false) {
                   setDifficulty(dif);

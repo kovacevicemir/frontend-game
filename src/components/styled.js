@@ -42,6 +42,8 @@ export const HorizontalScrollbar = styled.div`
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     height: 20px;
+    background-color: rgba(0, 128, 0, 0.75); /* Change the background color to greenish */
+
   }
   &::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.5); /* color of the scroll thumb */
@@ -432,12 +434,14 @@ const getCellBackgroundColor = (cell) => {
   }
 
   if (cell?.monsters?.length > 0) {
-    return "red";
+    // return "red";
   }
 
   if (cell.isPlayer) {
-    return "blue";
+    // return "blue";
   }
+
+  return "green"
 
   switch (cell.variant) {
     case 0:
@@ -452,12 +456,45 @@ const getCellBackgroundColor = (cell) => {
   }
 };
 
+const getCellBackgroundImage = (cell) => {
+  if (cell?.monsters?.length > 0 && cell.isPlayer) {
+    return `url("https://static.vecteezy.com/system/resources/thumbnails/022/946/250/small/cute-monster-character-colored-red-with-angry-expression-3d-illustration-generative-ai-free-png.png")`;
+  }
+
+  if (cell?.monsters?.length > 0) {
+    return `url("https://static.vecteezy.com/system/resources/thumbnails/022/946/250/small/cute-monster-character-colored-red-with-angry-expression-3d-illustration-generative-ai-free-png.png")`;
+  }
+  
+  if (cell.isPlayer) {
+    return `url("https://i.pinimg.com/originals/63/91/03/639103eff63de2e26c5e1ecd0365712f.png")`;
+  }
+
+  switch (cell.variant) {
+    case 0:
+      // Grass
+      return `url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbeO0xApU_69EQeYXzKR9ONbVlsTGVJR0adQ&usqp=CAU")`;
+    case 1:
+      // Wall
+      return `url("https://i.pinimg.com/736x/77/0f/94/770f949ff6c8f7d95ceb20e493f813a0.jpg")`;
+    case 2:
+      return "orange";
+
+    default:
+      return "yellow";
+  }
+};
+
 export const CellStyle = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   background-color: ${({ cell }) => getCellBackgroundColor(cell)};
-  border-radius: 5px;
-  margin: 1px;
+  background-image: ${({ cell }) => getCellBackgroundImage(cell)};
+  background-size: cover; /* Set the background size to cover the entire area */
+  @media (max-width: 540px) {
+    /* For screens with a maximum width of 768px (adjust as needed for your mobile breakpoint) */
+    width: 27px;
+    height: 27px;
+  }
 `;
 
 export const MonsterImage = styled.img`

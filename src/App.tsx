@@ -27,20 +27,41 @@ const App = () => {
     }
   }, [playerRef, player?.level, player]);
 
+  // useEffect(() => {
+  //   const updatePlayer = async (player: Player) => {
+  //     try {
+  //       await update(player);
+  //       error !== "" && setError("");
+  //     } catch (error) {
+  //       setError(settings.offlineErrorMessage);
+  //     }
+  //   };
+  //   if (player) {
+  //     //TODO - not update player all the time
+  //     if (random(1, 2) === 1) {
+  //       updatePlayer(player);
+  //     }
+  //     setPlayer(player);
+  //   }
+  // }, [
+  //   player,
+  //   player?.inventoryItems,
+  //   player?.equipedItems,
+  //   player?.experience,
+  //   player?.gold,
+  //   player?.shopAssets,
+  //   player?.level,
+  //   error,
+  // ]);
+
+  // ISOLATE BACKEND:
   useEffect(() => {
-    const updatePlayer = async (player: Player) => {
-      try {
-        await update(player);
-        error !== "" && setError("");
-      } catch (error) {
-        setError(settings.offlineErrorMessage);
-      }
+    const updatePlayer = (player: Player) => {
+      //@ts-ignore
+      localStorage.setItem("aegis_player", JSON.stringify(player));
     };
     if (player) {
-      //TODO - not update player all the time
-      if (random(1, 2) === 1) {
-        updatePlayer(player);
-      }
+      updatePlayer(player);
       setPlayer(player);
     }
   }, [

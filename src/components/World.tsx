@@ -234,13 +234,14 @@ const World = ({ player, setPlayer }: IWorld) => {
 
       <WorldMiddleLayout>
         {worldMap.map((rows) => {
-          return (
-            <CenterAlign>
-              {rows.map((col) => {
-                return <MapCell cell={col} />;
-              })}
-            </CenterAlign>
-          );
+          if (battleData?.playerAttacks[fightLogIndex] === undefined)
+            return (
+              <CenterAlign>
+                {rows.map((col) => {
+                  return <MapCell cell={col} />;
+                })}
+              </CenterAlign>
+            );
         })}
 
         {!battleData?.playerAttacks[fightLogIndex] &&
