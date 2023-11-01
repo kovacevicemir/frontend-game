@@ -249,11 +249,11 @@ const World = ({ player, setPlayer }: IWorld) => {
             <RenderMobs monsters={monsters} handleMobAttack={handleMobAttack} />
           )}
         {battleData?.playerAttacks[fightLogIndex] !== undefined && (
-          <DisplayBattle
-            battleData={battleData}
-            nickname={player.nickname}
-            fightLogIndex={fightLogIndex}
-          />
+            <DisplayBattle
+              battleData={battleData}
+              nickname={player.nickname}
+              fightLogIndex={fightLogIndex}
+            />
         )}
       </WorldMiddleLayout>
 
